@@ -16,6 +16,7 @@ namespace Aura.Processors.ProcessingStep
 
         public LoadSessionStep()
         {
+            CanProcess = true;
             ProcessManager = new ProcessManager();
         }
 

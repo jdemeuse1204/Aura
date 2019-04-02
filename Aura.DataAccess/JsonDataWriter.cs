@@ -33,12 +33,18 @@ namespace Aura.DataAccess
 
         public void Write<T>(IEnumerable<T> items) where T : class
         {
-            //File.WriteAllLines(FileNameAndPath, items.Select(JsonConvert.SerializeObject));
+            lock (items)
+            {
+                File.WriteAllLines(FileNameAndPath, items.Select(JsonConvert.SerializeObject));
+            }
         }
 
         public void Write<T>(T item) where T : class
         {
-            //File.WriteAllText (FileNameAndPath, JsonConvert.SerializeObject(item));
+            lock (item)
+            {
+                File.WriteAllText(FileNameAndPath, JsonConvert.SerializeObject(item));
+            }
         }
     }
 }

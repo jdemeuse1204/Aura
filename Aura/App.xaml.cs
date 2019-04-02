@@ -1,15 +1,8 @@
 ﻿using Aura.Processors;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Aura
 {
-    using Aura.ViewModels;
     using Ninject;
     using System.Windows;
     /// <summary>
@@ -55,7 +48,7 @@ namespace Aura
             RegisterDependencies();
 
             // Start processor timer
-            //Timer.Start();
+            Timer.Start();
 
             base.OnStartup(e);
         }

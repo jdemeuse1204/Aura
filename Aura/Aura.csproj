@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\CommandHandler.cs" />
+    <Compile Include="Common\Extensions\ViewModelExtensions.cs" />
     <Compile Include="Data\ProcessRepository.cs" />
     <Compile Include="Data\Registry\ApplicationSettings.cs" />
     <Compile Include="Data\SessionRepository.cs" />
@@ -101,21 +103,37 @@
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\DashboardControlViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
-    <Compile Include="Views\DashboardControl.xaml.cs">
+    <Compile Include="ViewModels\MainControlContainerViewModel.cs" />
+    <Compile Include="ViewModels\SettingsControlViewModel.cs" />
+    <Compile Include="Views\Controls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DashboardWindow.xaml.cs">
-      <DependentUpon>DashboardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\DashboardControl.xaml">
+    <Compile Include="Views\Controls\MainControlContainer.xaml.cs">
+      <DependentUpon>MainControlContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\Controls\DashboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DashboardWindow.xaml">
+    <Page Include="Views\Controls\MainControlContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

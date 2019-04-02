@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\JamesDeMuse\source\repos\Aura\Aura\obj\Debug\
+C:\Repos\Aura\Aura\obj\Debug\
 Aura
 none
 false
 DEBUG;TRACE
-C:\Users\JamesDeMuse\source\repos\Aura\Aura\App.xaml
-2-2050042080
+C:\Repos\Aura\Aura\App.xaml
+42074068293
 
-45327671018
-19-1589168899
-Views\DashboardControl.xaml;Views\DashboardWindow.xaml;
+51-1266389303
+19-1205491640
+Views\Controls\DashboardControl.xaml;Views\Controls\MainControlContainer.xaml;Views\Windows\MainWindow.xaml;Views\Controls\SettingsControl.xaml;
 
 True
 

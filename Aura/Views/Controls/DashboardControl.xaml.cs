@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Aura.Views
+namespace Aura.Views.Controls
 {
     /// <summary>
-    /// Interaction logic for DashboardWindow.xaml
+    /// Interaction logic for DashboardControl.xaml
     /// </summary>
-    public partial class DashboardWindow : Window
+    public partial class DashboardControl : UserControl
     {
-        public DashboardWindow()
+        public DashboardControl()
         {
             InitializeComponent();
         }

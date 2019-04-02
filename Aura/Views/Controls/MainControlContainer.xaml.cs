@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Aura.Views
+namespace Aura.Views.Controls
 {
     /// <summary>
-    /// Interaction logic for DashboardControl.xaml
+    /// Interaction logic for MainControlContainer.xaml
     /// </summary>
-    public partial class DashboardControl : UserControl
+    public partial class MainControlContainer : UserControl
     {
-        public DashboardControl()
+        public MainControlContainer()
         {
             InitializeComponent();
         }

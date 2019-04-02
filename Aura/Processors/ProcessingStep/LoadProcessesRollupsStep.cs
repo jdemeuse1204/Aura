@@ -17,6 +17,7 @@ namespace Aura.Processors.ProcessingStep
 
         public LoadProcessesRollupsStep()
         {
+            CanProcess = true;
             RollupManager = new RollupManager();
             ProcessManager = new ProcessManager();
         }
