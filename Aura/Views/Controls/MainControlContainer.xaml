@@ -8,8 +8,14 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainControlContainer}">
     <Grid>
-        <Controls:DashboardControl Visibility="{Binding IsDashboardControlVisible}" Margin="0,40,0,0"/>
-        <Controls:SettingsControl Visibility="{Binding IsSettingsControlVisible}" Margin="0,40,0,0"/>
-        <Button Content="Settings" Command="{Binding GoToSettingsClick}" HorizontalAlignment="Left" Margin="695,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Canvas Visibility="{Binding IsDashboardControlVisible}" Margin="0,40,15,15">
+            <Controls:DashboardControl Height="410" Width="800" />
+        </Canvas>
+
+        <Canvas Visibility="{Binding IsSettingsControlVisible}" Margin="0,40,15,15">
+            <Controls:SettingsControl/>
+        </Canvas>
+        <Button Content="Settings" Visibility="{Binding IsDashboardControlVisible}" Command="{Binding GoToSettingsClick}" HorizontalAlignment="Left" Margin="695,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Dashboard" Visibility="{Binding IsSettingsControlVisible}" Command="{Binding GoToDashboardClick}" HorizontalAlignment="Left" Margin="695,10,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

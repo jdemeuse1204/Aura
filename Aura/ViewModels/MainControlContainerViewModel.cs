@@ -11,11 +11,15 @@ using System.Windows.Input;
 
 namespace Aura.ViewModels
 {
-    public class MainControlContainerViewModel: ViewModel
+    public class MainControlContainerViewModel : ViewModel
     {
         public Visibility IsDashboardControlVisible { get; set; }
         public Visibility IsSettingsControlVisible { get; set; }
+
+        #region Commands
         public ICommand GoToSettingsClick => new CommandHandler(() => GoToSettings(), true);
+        public ICommand GoToDashboardClick => new CommandHandler(() => GoToDashboard(), true);
+        #endregion
 
         public MainControlContainerViewModel()
         {
@@ -27,6 +31,12 @@ namespace Aura.ViewModels
         {
             this.SetProperty(w => w.IsDashboardControlVisible, Visibility.Hidden);
             this.SetProperty(w => w.IsSettingsControlVisible, Visibility.Visible);
+        }
+
+        private void GoToDashboard()
+        {
+            this.SetProperty(w => w.IsDashboardControlVisible, Visibility.Visible);
+            this.SetProperty(w => w.IsSettingsControlVisible, Visibility.Hidden);
         }
     }
 }
