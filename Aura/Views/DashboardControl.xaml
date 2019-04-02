@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Aura.Views.DashboardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Aura.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=DashboardControl}">
+    <Grid>
+        <Label Content="Aura" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid ItemsSource="{Binding Processes}" Margin="10,181,15,15" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessName}" Width="150"/>
+                <DataGridTextColumn Header="Is Running" Binding="{Binding IsRunning}" />
+                <DataGridTextColumn Header="Is Active" Binding="{Binding IsActive}" />
+                <DataGridComboBoxColumn Header="Bucket"
+                                    ItemsSource="{Binding Buckets}"
+                                    DisplayMemberPath="Name"
+                                    SelectedValuePath="Id"
+                                    SelectedValueBinding="{Binding Bucket.Name}" />
+                <DataGridTextColumn Header="Total Time" Binding="{Binding TotalTime}" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DataGrid ItemsSource="{Binding Processes}" Margin="10" IsReadOnly="True"/>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <Button Command="{Binding ClickCommand}" Margin="550,10,0,0" Content="Test" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240"/>
+    </Grid>
+</UserControl>
