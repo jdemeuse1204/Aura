@@ -1,7 +1,9 @@
-﻿using Aura.Common;
+﻿using Aura.AddOns.Step;
+using Aura.Common;
 using Aura.Common.Extensions;
 using Aura.Models;
 using Aura.Processors;
+using Aura.Services.Interfaces;
 using Aura.ViewModels.Base;
 using Ninject;
 using System;
@@ -15,33 +17,25 @@ namespace Aura.ViewModels
 {
     public class DashboardControlViewModel : ViewModel
     {
-        protected readonly IMainProcessor MainProcessor;
+        private readonly IMainProcessor MainProcessor;
+        private readonly IRollupManager RollupManager;
 
-        public string Test { get; set; }
-        public ObservableCollection<ProcessRollup> Processes { get; set; }
-
-        #region Commands
-        public ICommand ClickCommand => new CommandHandler(() => MyAction(), true);
-        #endregion
+        public string ActiveApplication { get; set; }
+        public string TotalTimeWorked { get; set; }
 
         [Inject]
-        public DashboardControlViewModel(IMainProcessor mainProcessor)
-            : base()
+        public DashboardControlViewModel(IMainProcessor mainProcessor, IRollupManager rollupManager)
         {
-            Test = "Win";
             MainProcessor = mainProcessor;
+            RollupManager = rollupManager;
+
             MainProcessor.OnAfterRun += MainProcessor_OnAfterRun;
-            MainProcessor.Run();
         }
 
-        public void MyAction()
+        private void MainProcessor_OnAfterRun(IMainProcessorEventArgs args)
         {
-            this.SetProperty(w => w.Test, "Button!");
-        }
-
-        private void MainProcessor_OnAfterRun(MainProcessorEventArgs args)
-        {
-            this.SetProperty(w => w.Processes, new ObservableCollection<ProcessRollup>(args.Rollups));
+            this.SetProperty(w => w.ActiveApplication, RollupManager.GetActiveApplication(args.Rollups));
+            this.SetProperty(w => w.TotalTimeWorked, RollupManager.GetTotalTime(args.Rollups));
         }
     }
 }

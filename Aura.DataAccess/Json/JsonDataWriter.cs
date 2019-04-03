@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aura.DataAccess
+namespace Aura.DataAccess.Json
 {
     public class JsonDataWriter
     {

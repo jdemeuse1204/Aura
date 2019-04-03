@@ -1,4 +1,5 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Aura.Processors
 {
-    public class MainProcessorEventArgs
+    public class MainProcessorEventArgs : IMainProcessorEventArgs
     {
-        public MainProcessorEventArgs(IEnumerable<ProcessRollup> rollups)
+        public MainProcessorEventArgs(IEnumerable<IProcessRollup> rollups)
         {
             Rollups = rollups;
         }
 
-        public IEnumerable<ProcessRollup> Rollups { get; }
+        public IEnumerable<IProcessRollup> Rollups { get; }
     }
 }

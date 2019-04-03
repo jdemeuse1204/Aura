@@ -67,7 +67,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommandHandler.cs" />
+    <Compile Include="Common\Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Common\Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Common\ValueConverters\InvertVisibilityValueConverter.cs" />
+    <Compile Include="Data\Interfaces\IApplicationSettings.cs" />
+    <Compile Include="Data\Interfaces\IProcessRepository.cs" />
+    <Compile Include="Data\Interfaces\ISessionRepository.cs" />
     <Compile Include="Data\ProcessRepository.cs" />
     <Compile Include="Data\Registry\ApplicationSettings.cs" />
     <Compile Include="Data\SessionRepository.cs" />
@@ -77,6 +82,8 @@
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\WindowsProcess.cs" />
     <Compile Include="Processors\Factories\GeneralFactory.cs" />
+    <Compile Include="Processors\Factories\Interfaces\IGeneralFactory.cs" />
+    <Compile Include="Processors\Factories\Interfaces\IProcessingFactory.cs" />
     <Compile Include="Processors\Factories\ProcessingFactory.cs" />
     <Compile Include="Processors\GeneralStep\Base\IGeneralStep.cs" />
     <Compile Include="Processors\GeneralStep\DisposeUser.cs" />
@@ -96,15 +103,29 @@
     <Compile Include="Processors\ProcessingStep\SaveProcessesStep.cs" />
     <Compile Include="Processors\ProcessingStep\SaveSessionStep.cs" />
     <Compile Include="Processors\ProcessingStep\WindowsCurrentRunningProcessesStep.cs" />
+    <Compile Include="Services\AddOnManager.cs" />
+    <Compile Include="Services\Interfaces\IAddOnManager.cs" />
+    <Compile Include="Services\Interfaces\IProcessManager.cs" />
+    <Compile Include="Services\Interfaces\IRollupManager.cs" />
     <Compile Include="Services\ProcessManager.cs" />
     <Compile Include="Services\RollupManager.cs" />
     <Compile Include="Utilities\WindowsApi.cs" />
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\BucketsControlViewModel.cs" />
+    <Compile Include="ViewModels\CalendarControlViewModel.cs" />
     <Compile Include="ViewModels\DashboardControlViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainControlContainerViewModel.cs" />
+    <Compile Include="ViewModels\ReportsControlViewModel.cs" />
     <Compile Include="ViewModels\SettingsControlViewModel.cs" />
+    <Compile Include="ViewModels\TrackingControlViewModel.cs" />
+    <Compile Include="Views\Controls\BucketsControl.xaml.cs">
+      <DependentUpon>BucketsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CalendarControl.xaml.cs">
+      <DependentUpon>CalendarControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
@@ -115,17 +136,39 @@
     <Compile Include="Views\Controls\MainControlContainer.xaml.cs">
       <DependentUpon>MainControlContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ReportsControl.xaml.cs">
+      <DependentUpon>ReportsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\TrackingControl.xaml.cs">
+      <DependentUpon>TrackingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Controls\BucketsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CalendarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\DashboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MainControlContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ReportsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\TrackingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +210,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Aura.AddOns\Aura.AddOns.csproj">
+      <Project>{43b4706a-3784-46a7-9b00-037831a5c80a}</Project>
+      <Name>Aura.AddOns</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aura.DataAccess\Aura.DataAccess.csproj">
       <Project>{365c33c2-1078-4e27-9d20-6353a1dba00e}</Project>
       <Name>Aura.DataAccess</Name>

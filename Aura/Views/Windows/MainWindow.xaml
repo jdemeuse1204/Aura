@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:Aura.Views.Controls"
-        Title="Aura - Dashboard" Height="450" Width="800">
+        Title="Aura - Dashboard" Height="530" Width="800">
 
     <Controls:MainControlContainer/>
 </Window>

@@ -44,13 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonDataIterator.cs" />
-    <Compile Include="JsonDataReader.cs" />
-    <Compile Include="JsonDataWriter.cs" />
+    <Compile Include="Http\Fetch.cs" />
+    <Compile Include="Json\JsonDataIterator.cs" />
+    <Compile Include="Json\JsonDataReader.cs" />
+    <Compile Include="Json\JsonDataWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

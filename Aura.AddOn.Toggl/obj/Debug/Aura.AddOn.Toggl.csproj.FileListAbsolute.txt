@@ -1,0 +1,16 @@
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Aura.AddOn.Toggl.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Aura.AddOn.Toggl.pdb
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Aura.AddOns.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Aura.DataAccess.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Ninject.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Newtonsoft.Json.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Aura.AddOns.pdb
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Aura.DataAccess.pdb
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Ninject.xml
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Newtonsoft.Json.pdb
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\Newtonsoft.Json.xml
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\Aura.AddOn.Toggl.csprojAssemblyReference.cache
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\Aura.AddOn.Toggl.csproj.CoreCompileInputs.cache
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\Aura.AddOn.Toggl.csproj.CopyComplete
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\Aura.AddOn.Toggl.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\Aura.AddOn.Toggl.pdb

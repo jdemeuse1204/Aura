@@ -1,6 +1,9 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using Aura.Processors.ProcessingStep.Base;
 using Aura.Services;
+using Aura.Services.Interfaces;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +15,16 @@ namespace Aura.Processors.ProcessingStep
     public class LoadSessionStep : IProcessingStep
     {
         public bool CanProcess { get; private set; }
-        private readonly ProcessManager ProcessManager;
+        private readonly IProcessManager ProcessManager;
 
-        public LoadSessionStep()
+        [Inject]
+        public LoadSessionStep(IProcessManager processManager)
         {
             CanProcess = true;
-            ProcessManager = new ProcessManager();
+            ProcessManager = processManager;
         }
 
-        public void Run(Session session, List<ProcessRollup> processRollups)
+        public void Run(Session session, List<IProcessRollup> processRollups)
         {
             var loadedSession = ProcessManager.GetSession();
 

@@ -1,4 +1,5 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using Aura.Processors.ProcessingStep.Base;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Aura.Processors.ProcessingStep
             CanProcess = true;
         }
 
-        public void Run(Session session, List<ProcessRollup> processRollups)
+        public void Run(Session session, List<IProcessRollup> processRollups)
         {
             session.LastActivityDateTime = DateTime.Now;
 

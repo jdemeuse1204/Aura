@@ -1,5 +1,7 @@
-﻿using Aura.Processors.ProcessingStep;
+﻿using Aura.Processors.Factories.Interfaces;
+using Aura.Processors.ProcessingStep;
 using Aura.Processors.ProcessingStep.Base;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,23 +10,23 @@ using System.Threading.Tasks;
 
 namespace Aura.Processors.Factories
 {
-    public class ProcessingFactory
+    public class ProcessingFactory : IProcessingFactory
     {
         private readonly List<IProcessingStep> Steps;
 
-        public ProcessingFactory()
+        public ProcessingFactory(IKernel kernel)
         {
             // register steps
             Steps = new List<IProcessingStep>
             {
-                new LoadProcessesRollupsStep(),
-                new LoadSessionStep(),
-                new InitializeProcessingStep(),   
-                new IsUserAwayStep(),
-                new IsSessionLockedStep(),
-                new WindowsCurrentRunningProcessesStep(),
-                new SaveProcessesStep(),
-                new SaveSessionStep()
+                kernel.Get<LoadProcessesRollupsStep>(),
+                kernel.Get<LoadSessionStep>(),
+                kernel.Get<InitializeProcessingStep>(),
+                kernel.Get<IsUserAwayStep>(),
+                kernel.Get<IsSessionLockedStep>(),
+                kernel.Get<WindowsCurrentRunningProcessesStep>(),
+                kernel.Get<SaveProcessesStep>(),
+                kernel.Get<SaveSessionStep>()
             };
         }
 

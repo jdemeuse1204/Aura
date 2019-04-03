@@ -1,0 +1,6 @@
+C:\Repos\Aura\Aura.AddOns\bin\Debug\Aura.AddOns.dll
+C:\Repos\Aura\Aura.AddOns\bin\Debug\Aura.AddOns.pdb
+C:\Repos\Aura\Aura.AddOns\obj\Debug\Aura.AddOns.csprojAssemblyReference.cache
+C:\Repos\Aura\Aura.AddOns\obj\Debug\Aura.AddOns.csproj.CoreCompileInputs.cache
+C:\Repos\Aura\Aura.AddOns\obj\Debug\Aura.AddOns.dll
+C:\Repos\Aura\Aura.AddOns\obj\Debug\Aura.AddOns.pdb

@@ -1,4 +1,5 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Aura.Processors.GeneralStep.Base
 {
     public interface IGeneralStep
     {
-        void Run(Session session, List<ProcessRollup> processRollups);
+        void Run(Session session, List<IProcessRollup> processRollups);
     }
 }

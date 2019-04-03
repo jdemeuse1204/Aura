@@ -1,4 +1,5 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using Aura.Processors.GeneralStep.Base;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Aura.Processors.GeneralStep
 {
     public class DisposeUser : IGeneralStep
     {
-        public void Run(Session session, List<ProcessRollup> processRollups)
+        public void Run(Session session, List<IProcessRollup> processRollups)
         {
             var windowsProcesses = processRollups.SelectMany(w => w.Processes);
 

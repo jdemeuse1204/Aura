@@ -21,6 +21,14 @@ namespace Aura.Common.Extensions
             }
         }
 
+        public static void RaisePropertyChanged<T>(this T instance, Expression<Func<T, object>> propertyFunction) where T : ViewModel
+        {
+            if (propertyFunction.Body is MemberExpression memberExpression)
+            {
+                RaisePropertyChangedEvent(instance, memberExpression.Member.Name);
+            }
+        }
+
         private static void RaisePropertyChangedEvent<T>(T instance, string propertyName)
         {
             typeof(ViewModel).GetMethod("RaisePropertyChangedEvent", BindingFlags.NonPublic | BindingFlags.Instance)?.Invoke(instance, new object[] { propertyName });

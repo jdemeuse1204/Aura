@@ -1,6 +1,10 @@
-﻿using Aura.Data;
+﻿using Aura.AddOns.Step;
+using Aura.Data;
+using Aura.Data.Interfaces;
 using Aura.Models;
+using Aura.Services.Interfaces;
 using Aura.Utilities;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,18 +14,19 @@ using System.Threading.Tasks;
 
 namespace Aura.Services
 {
-    public class ProcessManager
+    public class ProcessManager : IProcessManager
     {
-        private readonly ProcessRepository ProcessRepository;
-        private readonly SessionRepository SessionRepository;
+        private readonly IProcessRepository ProcessRepository;
+        private readonly ISessionRepository SessionRepository;
 
-        public ProcessManager()
+        [Inject]
+        public ProcessManager(IProcessRepository processRepository, ISessionRepository sessionRepository)
         {
-            ProcessRepository = new ProcessRepository();
-            SessionRepository = new SessionRepository();
+            ProcessRepository = processRepository;
+            SessionRepository = sessionRepository;
         }
 
-        public IEnumerable<WindowsProcess> GetCurrentProcesses()
+        public IEnumerable<IWindowsProcess> GetCurrentProcesses()
         {
             var activeWindowHandle = WindowsApi.GetforegroundWindow();
             var activeWindowId = WindowsApi.GetWindowProcessId(activeWindowHandle);
@@ -38,12 +43,12 @@ namespace Aura.Services
             });
         }
 
-        public IEnumerable<WindowsProcess> GetLoggedProcesses()
+        public IEnumerable<IWindowsProcess> GetLoggedProcesses()
         {
             return ProcessRepository.LoadSavedProcesses();
         }
 
-        public void SaveProcesses(IEnumerable<WindowsProcess> processes)
+        public void SaveProcesses(IEnumerable<IWindowsProcess> processes)
         {
             ProcessRepository.Save(processes);
         }

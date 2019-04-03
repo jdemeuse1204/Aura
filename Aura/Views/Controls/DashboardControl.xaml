@@ -4,26 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=DashboardControl}">
+             d:DesignHeight="460" d:DesignWidth="800"
+             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=DashboardControl}"
+             BorderBrush="LightGray"
+             BorderThickness="1">
     <Grid>
-        <DataGrid ItemsSource="{Binding Processes}" Margin="10,10,15,15" AutoGenerateColumns="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessName}" Width="150"/>
-                <DataGridTextColumn Header="Is Running" Binding="{Binding IsRunning}" />
-                <DataGridTextColumn Header="Is Active" Binding="{Binding IsActive}" />
-                <DataGridComboBoxColumn Header="Bucket"
-                                    ItemsSource="{Binding Buckets}"
-                                    DisplayMemberPath="Name"
-                                    SelectedValuePath="Id"
-                                    SelectedValueBinding="{Binding Bucket.Name}" />
-                <DataGridTextColumn Header="Total Time" Binding="{Binding TotalTime}" />
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <DataGrid ItemsSource="{Binding Processes}" Margin="10" IsReadOnly="True"/>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
+        <Label Content="DASHBOARD" Background="RoyalBlue" Foreground="white" BorderBrush="LightGray" BorderThickness="1" HorizontalAlignment="Left" Margin="-193,199,0,0" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="444" Height="52">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="Session" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Margin="84,10,0,0" VerticalAlignment="Top" Width="704"/>
+        <Label Content="Active Application:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="84,52,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="{Binding ActiveApplication}" HorizontalAlignment="Left" Margin="203,52,0,0" VerticalAlignment="Top" Width="358" Height="26"/>
+        <Label Content="Time Worked Today:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="84,78,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="{Binding TotalTimeWorked}" HorizontalAlignment="Left" Margin="203,78,0,0" VerticalAlignment="Top" Width="155" Height="26"/>
+        <Label Content="Last 7 Days" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Margin="84,144,0,0" VerticalAlignment="Top" Width="704"/>
     </Grid>
 </UserControl>

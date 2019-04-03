@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Repos\Aura\Aura\App.xaml
-42074068293
+8574981237
 
-51-1266389303
-19-1205491640
-Views\Controls\DashboardControl.xaml;Views\Controls\MainControlContainer.xaml;Views\Windows\MainWindow.xaml;Views\Controls\SettingsControl.xaml;
+702083453816
+20-321080577
+Views\Controls\BucketsControl.xaml;Views\Controls\CalendarControl.xaml;Views\Controls\DashboardControl.xaml;Views\Controls\MainControlContainer.xaml;Views\Controls\ReportsControl.xaml;Views\Controls\TrackingControl.xaml;Views\Windows\MainWindow.xaml;Views\Controls\SettingsControl.xaml;
 
 True
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aura.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -7,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace Aura.Data.Registry
 {
-    public class ApplicationSettings
+    public class ApplicationSettings : IApplicationSettings
     {
-        public static string MainFileDirectory => string.Format(GetSetting<string>("MainFileDirectory"), Environment.UserName);
-        public static string DataFileDirectory => string.Format(GetSetting<string>("DataFileDirectory"), DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        public static string DataFileName => GetSetting<string>("DataFileName");
-        public static string SessionFileName => GetSetting<string>("SessionFileName");
-        public static string SessionFileDirectory => GetSetting<string>("SessionFileDirectory");
+        public string MainFileDirectory => string.Format(GetSetting<string>("MainFileDirectory"), Environment.UserName);
+        public string DataFileDirectory => string.Format(GetSetting<string>("DataFileDirectory"), DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        public string DataFileName => GetSetting<string>("DataFileName");
+        public string SessionFileName => GetSetting<string>("SessionFileName");
+        public string SessionFileDirectory => GetSetting<string>("SessionFileDirectory");
+        public string AddOnsFileDirectory => GetSetting<string>("AddOnsFileDirectory");
 
         private static T GetSetting<T>(string key)
         {

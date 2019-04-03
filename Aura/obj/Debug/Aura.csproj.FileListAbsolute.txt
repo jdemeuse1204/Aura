@@ -58,3 +58,13 @@ C:\Repos\Aura\Aura\obj\Debug\Views\Windows\MainWindow.baml
 C:\Repos\Aura\Aura\obj\Debug\Views\Controls\SettingsControl.baml
 C:\Repos\Aura\Aura\obj\Debug\Views\Controls\MainControlContainer.g.cs
 C:\Repos\Aura\Aura\obj\Debug\Views\Controls\MainControlContainer.baml
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\TrackingControl.g.cs
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\TrackingControl.baml
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\CalendarControl.g.cs
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\CalendarControl.baml
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\BucketsControl.g.cs
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\BucketsControl.baml
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\ReportsControl.g.cs
+C:\Repos\Aura\Aura\bin\Debug\Aura.AddOns.dll
+C:\Repos\Aura\Aura\bin\Debug\Aura.AddOns.pdb
+C:\Repos\Aura\Aura\obj\Debug\Views\Controls\ReportsControl.baml

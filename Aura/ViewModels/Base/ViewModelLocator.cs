@@ -25,5 +25,25 @@ namespace Aura.ViewModels.Base
         {
             get { return App.Container.Get<MainControlContainerViewModel>(); }
         }
+
+        public ViewModel TrackingControl
+        {
+            get { return App.Container.Get<TrackingControlViewModel>(); }
+        }
+
+        public ViewModel CalendarControl
+        {
+            get { return App.Container.Get<CalendarControlViewModel>(); }
+        }
+
+        public ViewModel BucketsControl
+        {
+            get { return App.Container.Get<BucketsControlViewModel>(); }
+        }
+
+        public ViewModel ReportsControl
+        {
+            get { return App.Container.Get<ReportsControlViewModel>(); }
+        }
     }
 }

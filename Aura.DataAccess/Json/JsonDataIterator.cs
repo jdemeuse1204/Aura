@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aura.DataAccess
+namespace Aura.DataAccess.Json
 {
     public class JsonDataIterator<T> : IEnumerable<T>, IDisposable where T : class
     {
@@ -37,12 +37,7 @@ namespace Aura.DataAccess
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            string line;
-
-            while ((line = StreamReader.ReadLine()) != null)
-            {
-                yield return JsonConvert.DeserializeObject<T>(line);
-            }
+            return GetEnumerator();
         }
     }
 }

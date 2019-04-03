@@ -1,4 +1,5 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using Aura.Processors.ProcessingStep.Base;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Aura.Processors.ProcessingStep
     {
         public bool CanProcess => true;
 
-        public void Run(Session session, List<ProcessRollup> processRollups)
+        public void Run(Session session, List<IProcessRollup> processRollups)
         {
             if ((DateTime.Now - session.LastActivityDateTime).TotalMinutes >= 1)
             {

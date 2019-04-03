@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Aura.AddOns;
+using Aura.AddOns.Step;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace Aura.Models
 {
-    public class ProcessRollup
+    public class ProcessRollup : IProcessRollup
     {
         public ProcessRollup(string processName)
-            : this(processName, new List<WindowsProcess>())
+            : this(processName, new List<IWindowsProcess>())
         {
             Bucket = new Bucket();
         }
 
-        public ProcessRollup(string processName, IEnumerable<WindowsProcess> windowsProcesses)
+        public ProcessRollup(string processName, IEnumerable<IWindowsProcess> windowsProcesses)
         {
             ProcessName = processName;
             Processes = windowsProcesses;
         }
 
-        public Bucket Bucket { get; set; }
+        public IBucket Bucket { get; private set; }
         public string ProcessName { get; private set; }
         public bool IsRunning
         {
@@ -44,16 +46,16 @@ namespace Aura.Models
             }
         }
 
-        public void Add(WindowsProcess process)
+        public void Add(IWindowsProcess process)
         {
             if (process.ProcessName != ProcessName)
             {
                 throw new ArgumentException($"Process name {process.ProcessName} does not match {ProcessName}");
             }
 
-            ((List<WindowsProcess>)Processes).Add(process);
+            ((List<IWindowsProcess>)Processes).Add(process);
         }
 
-        public IEnumerable<WindowsProcess> Processes { get; private set; }
+        public IEnumerable<IWindowsProcess> Processes { get; private set; }
     }
 }

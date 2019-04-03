@@ -1,9 +1,13 @@
-﻿using Aura.Models;
+﻿using Aura.AddOns.Step;
+using Aura.Models;
 using Aura.Processors.Factories;
+using Aura.Processors.Factories.Interfaces;
 using Aura.Processors.GeneralStep;
 using Aura.Processors.ProcessingStep;
+using Aura.Services.Interfaces;
 using Gma.System.MouseKeyHook;
 using Microsoft.Win32;
+using Ninject;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -12,24 +16,28 @@ namespace Aura.Processors
     public class MainProcessor : IMainProcessor
     {
         private readonly Session Session;
-        private readonly List<ProcessRollup> ProcessRollups;
+        private readonly List<IProcessRollup> ProcessRollups;
 
-        private readonly ProcessingFactory ProcessingFactory;
-        private readonly GeneralFactory GeneralFactory;
+        private readonly IProcessingFactory ProcessingFactory;
+        private readonly IGeneralFactory GeneralFactory;
+        private readonly IAddOnManager AddOnManager;
 
         private IKeyboardMouseEvents m_GlobalHook;
         private readonly SessionSwitchEventHandler SessionSwitchEventHandler;
 
-        public IEnumerable<ProcessRollup> Rollups => ProcessRollups;
-        public delegate void OnAfterRunHandler(MainProcessorEventArgs args);
+        public IEnumerable<IProcessRollup> Rollups => ProcessRollups;
+        public delegate void OnAfterRunHandler(IMainProcessorEventArgs args);
         public event OnAfterRunHandler OnAfterRun;
-        public MainProcessor()
+
+        [Inject]
+        public MainProcessor(IProcessingFactory processingFactory, IGeneralFactory generalFactory, IAddOnManager addOnManager)
         {
-            ProcessingFactory = new ProcessingFactory();
-            GeneralFactory = new GeneralFactory();
+            ProcessingFactory = processingFactory;
+            GeneralFactory = generalFactory;
+            AddOnManager = addOnManager;
 
             Session = new Session();
-            ProcessRollups = new List<ProcessRollup>();
+            ProcessRollups = new List<IProcessRollup>();
             
             SessionSwitchEventHandler = new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
             SystemEvents.SessionSwitch += SessionSwitchEventHandler;
@@ -43,11 +51,20 @@ namespace Aura.Processors
 
         public void Run()
         {
+            // Process Main Steps
             var processingSteps = ProcessingFactory.All();
 
             foreach (var processingStep in processingSteps)
             {
                 processingStep.Run(Session, ProcessRollups);
+            }
+
+            // Process AddOns
+            var addOnSteps = AddOnManager.GetAddOnStepsToProcess();
+
+            foreach (var addOnStep in addOnSteps)
+            {
+                addOnStep.Run(new MainProcessorEventArgs(ProcessRollups));
             }
 
             OnAfterRun?.Invoke(new MainProcessorEventArgs(ProcessRollups));

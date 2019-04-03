@@ -1,4 +1,5 @@
-﻿using Aura.Processors.GeneralStep;
+﻿using Aura.Processors.Factories.Interfaces;
+using Aura.Processors.GeneralStep;
 using Aura.Processors.GeneralStep.Base;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Aura.Processors.Factories
 {
-    public class GeneralFactory
+    public class GeneralFactory : IGeneralFactory
     {
         private readonly List<IGeneralStep> Steps;
 

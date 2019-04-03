@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aura", "Aura\Aura.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aura.DataAccess", "Aura.DataAccess\Aura.DataAccess.csproj", "{365C33C2-1078-4E27-9D20-6353A1DBA00E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aura.AddOns", "Aura.AddOns\Aura.AddOns.csproj", "{43B4706A-3784-46A7-9B00-037831A5C80A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aura.AddOn.Toggl", "Aura.AddOn.Toggl\Aura.AddOn.Toggl.csproj", "{523D90E7-2077-4E55-8760-483390A406FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{365C33C2-1078-4E27-9D20-6353A1DBA00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{365C33C2-1078-4E27-9D20-6353A1DBA00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{365C33C2-1078-4E27-9D20-6353A1DBA00E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B4706A-3784-46A7-9B00-037831A5C80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B4706A-3784-46A7-9B00-037831A5C80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B4706A-3784-46A7-9B00-037831A5C80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B4706A-3784-46A7-9B00-037831A5C80A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523D90E7-2077-4E55-8760-483390A406FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523D90E7-2077-4E55-8760-483390A406FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523D90E7-2077-4E55-8760-483390A406FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523D90E7-2077-4E55-8760-483390A406FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
