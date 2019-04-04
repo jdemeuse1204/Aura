@@ -16,6 +16,7 @@ namespace Aura.Data.Registry
         public string SessionFileName => GetSetting<string>("SessionFileName");
         public string SessionFileDirectory => GetSetting<string>("SessionFileDirectory");
         public string AddOnsFileDirectory => GetSetting<string>("AddOnsFileDirectory");
+        public string BucketsFileName => GetSetting<string>("BucketsFileName");
 
         private static T GetSetting<T>(string key)
         {

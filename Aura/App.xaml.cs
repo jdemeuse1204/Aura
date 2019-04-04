@@ -6,6 +6,7 @@ namespace Aura
     using Aura.Data;
     using Aura.Data.Interfaces;
     using Aura.Data.Registry;
+    using Aura.Data.Text;
     using Aura.Processors.Factories;
     using Aura.Processors.Factories.Interfaces;
     using Aura.Processors.ProcessingStep;
@@ -82,6 +83,7 @@ namespace Aura
             Container.Bind<IRollupManager>().To<RollupManager>();
             Container.Bind<IAddOnManager>().To<AddOnManager>();
             Container.Bind<IProcessManager>().To<ProcessManager>();
+            Container.Bind<IBucketsManager>().To<BucketsManager>();
 
             // Misc
             Container.Bind<IApplicationSettings>().To<ApplicationSettings>();
@@ -89,6 +91,7 @@ namespace Aura
             // Repositories
             Container.Bind<ISessionRepository>().To<SessionRepository>();
             Container.Bind<IProcessRepository>().To<ProcessRepository>();
+            Container.Bind<IBucketsRepository>().To<BucketsRepository>();
 
             // Factories
             Container.Bind<IProcessingFactory>().To<ProcessingFactory>().WithConstructorArgument("kernel", Container);
@@ -96,6 +99,11 @@ namespace Aura
 
             // Steps
             Container.Bind<LoadProcessesRollupsStep>().ToSelf();
+
+            // Json Writers (All in singleton scope so thread locking works)
+            Container.Bind<IBucketsJsonDataReaderWriter>().To<BucketsJsonDataReaderWriter>().InSingletonScope();
+            Container.Bind<IProcessJsonDataReaderWriter>().To<ProcessJsonDataReaderWriter>().InSingletonScope();
+            Container.Bind<ISessionJsonDataReaderWriter>().To<SessionJsonDataReaderWriter>().InSingletonScope();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Aura.AddOns.Step;
+using Aura.Common.Extensions;
+using Aura.Common.Helpers;
 using Aura.Data;
 using Aura.Data.Interfaces;
 using Aura.Models;
@@ -53,6 +55,20 @@ namespace Aura.Services
             ProcessRepository.Save(processes);
         }
 
+        public IEnumerable<string> GetActiveTimePeriods(IWindowsProcess process)
+        {
+            if (process == null)
+            {
+                return new List<string>();
+            }
+
+            return process.ClockPeriods.Select((w, index) =>
+            {
+                var readableTime = (w.EndTime.HasValue ? w.EndTime.Value - w.StartTime : DateTime.Now - w.StartTime).ToReadableTime();
+                return $"{readableTime}{(w.EndTime.HasValue == false ? " (active)" : "")}";
+            });
+        }
+
         public void SaveSession(Session session)
         {
             SessionRepository.Save(session);
@@ -61,6 +77,18 @@ namespace Aura.Services
         public Session GetSession()
         {
             return SessionRepository.Get();
+        }
+
+        public string GetTotalActiveApplicationTime(IWindowsProcess process)
+        {
+            if (process == null)
+            {
+                return string.Empty;
+            }
+
+            var sum = TimeSpanHelpers.Sum(process.ClockPeriods.Select(w => w.EndTime.HasValue ? (w.EndTime.Value - w.StartTime) : (DateTime.Now - w.StartTime)));
+
+            return sum.ToReadableTime();
         }
     }
 }

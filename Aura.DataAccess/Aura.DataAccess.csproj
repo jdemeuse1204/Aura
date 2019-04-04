@@ -45,9 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Http\Fetch.cs" />
+    <Compile Include="Http\Interfaces\IFetch.cs" />
+    <Compile Include="Json\Interfaces\IJsonDataReaderWriter.cs" />
     <Compile Include="Json\JsonDataIterator.cs" />
-    <Compile Include="Json\JsonDataReader.cs" />
-    <Compile Include="Json\JsonDataWriter.cs" />
+    <Compile Include="Json\JsonDataReaderWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

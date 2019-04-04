@@ -25,8 +25,13 @@ namespace Aura.Common.Extensions
         {
             if (propertyFunction.Body is MemberExpression memberExpression)
             {
-                RaisePropertyChangedEvent(instance, memberExpression.Member.Name);
+                RaisePropertyChangedEvent(instance, GetPropertyName(memberExpression));
             }
+        }
+
+        private static string GetPropertyName(MemberExpression expression)
+        {
+            return expression.Member.Name;
         }
 
         private static void RaisePropertyChangedEvent<T>(T instance, string propertyName)

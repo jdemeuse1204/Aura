@@ -13,7 +13,6 @@ namespace Aura.Models
         public ProcessRollup(string processName)
             : this(processName, new List<IWindowsProcess>())
         {
-            Bucket = new Bucket();
         }
 
         public ProcessRollup(string processName, IEnumerable<IWindowsProcess> windowsProcesses)
@@ -22,7 +21,6 @@ namespace Aura.Models
             Processes = windowsProcesses;
         }
 
-        public IBucket Bucket { get; private set; }
         public string ProcessName { get; private set; }
         public bool IsRunning
         {

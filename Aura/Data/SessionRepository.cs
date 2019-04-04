@@ -16,27 +16,23 @@ namespace Aura.Data
     public class SessionRepository : ISessionRepository
     {
         private readonly IApplicationSettings ApplicationSettings;
-        private readonly JsonDataWriter JsonDataWriter;
-        private readonly JsonDataReader JsonDataReader;
+        private readonly ISessionJsonDataReaderWriter SessionJsonDataWriter;
 
         [Inject]
-        public SessionRepository(IApplicationSettings applicationSettings)
+        public SessionRepository(IApplicationSettings applicationSettings, ISessionJsonDataReaderWriter sessionJsonDataWriter)
         {
             ApplicationSettings = applicationSettings;
-            var logFileLocation = Path.Combine(ApplicationSettings.MainFileDirectory, ApplicationSettings.SessionFileDirectory);
-
-            JsonDataWriter = new JsonDataWriter(logFileLocation, ApplicationSettings.SessionFileName);
-            JsonDataReader = new JsonDataReader(logFileLocation, ApplicationSettings.SessionFileName);
+            SessionJsonDataWriter = sessionJsonDataWriter;
         }
 
         public void Save(Session session)
         {
-            JsonDataWriter.Write(session);
+            SessionJsonDataWriter.Write(session);
         }
 
         public Session Get()
         {
-            return JsonDataReader.Get<Session>();
+            return SessionJsonDataWriter.Get<Session>();
         }
     }
 }

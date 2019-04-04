@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Step\IAddOnStep.cs" />
     <Compile Include="Step\IBucket.cs" />
+    <Compile Include="Step\IClockPeriod.cs" />
     <Compile Include="Step\IMainProcessorEventArgs.cs" />
     <Compile Include="Step\IProcessRollup.cs" />
     <Compile Include="Step\IWindowsProcess.cs" />

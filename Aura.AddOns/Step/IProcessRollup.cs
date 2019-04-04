@@ -8,7 +8,6 @@ namespace Aura.AddOns.Step
 {
     public interface IProcessRollup
     {
-        IBucket Bucket { get; }
         string ProcessName { get; }
         bool IsRunning { get; }
         bool IsActive { get; }

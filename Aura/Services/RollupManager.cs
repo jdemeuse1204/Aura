@@ -1,5 +1,6 @@
 ﻿using Aura.AddOns.Step;
 using Aura.Common.Extensions;
+using Aura.Common.Helpers;
 using Aura.Models;
 using Aura.Services.Interfaces;
 using System;
@@ -22,19 +23,12 @@ namespace Aura.Services
 
         public string GetTotalTime(IEnumerable<IProcessRollup> processRollups)
         {
-            return new TimeSpan(processRollups.SelectMany(w => w.Processes).Select(w => w.TotalTimeActive.Ticks).Sum()).ToReadableTime();
+            return TimeSpanHelpers.Sum(processRollups.SelectMany(w => w.Processes).Select(w => w.TotalTimeActive)).ToReadableTime();
         }
 
-        public string GetActiveApplication(IEnumerable<IProcessRollup> processRollups)
+        public IWindowsProcess GetActiveApplication(IEnumerable<IProcessRollup> processRollups)
         {
-            var activeProcess = processRollups.SelectMany(w => w.Processes).FirstOrDefault(w => w.IsActive);
-
-            if (activeProcess == null)
-            {
-                return string.Empty;
-            }
-
-            return activeProcess.Title;
+            return processRollups.SelectMany(w => w.Processes).FirstOrDefault(w => w.IsActive);
         }
     }
 }

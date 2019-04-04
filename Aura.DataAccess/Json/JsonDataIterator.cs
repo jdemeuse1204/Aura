@@ -13,16 +13,19 @@ namespace Aura.DataAccess.Json
     {
         private readonly string FileNameAndPath;
         private readonly StreamReader StreamReader;
+        private readonly FileStream FileStream;
 
         public JsonDataIterator(string fileNameAndPath)
         {
             FileNameAndPath = fileNameAndPath;
-            StreamReader = new StreamReader(FileNameAndPath);
+            FileStream = new FileStream(FileNameAndPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            StreamReader = new StreamReader(FileStream);
         }
 
         public void Dispose()
         {
             StreamReader.Dispose();
+            FileStream.Dispose();
         }
 
         public IEnumerator<T> GetEnumerator()

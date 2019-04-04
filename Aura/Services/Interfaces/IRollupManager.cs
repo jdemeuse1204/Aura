@@ -11,7 +11,7 @@ namespace Aura.Services.Interfaces
     public interface IRollupManager
     {
         IEnumerable<IProcessRollup> RollupProcesses(IEnumerable<IWindowsProcess> processes);
-        string GetActiveApplication(IEnumerable<IProcessRollup> processRollups);
+        IWindowsProcess GetActiveApplication(IEnumerable<IProcessRollup> processRollups);
         DateTime GetStartDate(IEnumerable<IProcessRollup> processRollups);
         string GetTotalTime(IEnumerable<IProcessRollup> processRollups);
     }

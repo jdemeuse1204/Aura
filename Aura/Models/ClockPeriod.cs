@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Aura.AddOns.Step;
+using Aura.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aura.Models
 {
-    public class ClockPeriod
+    public class ClockPeriod : IClockPeriod
     {
         public ClockPeriod()
         {

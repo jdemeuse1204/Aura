@@ -18,6 +18,8 @@ namespace Aura.AddOns.Step
         IntPtr Handle { get; set; }
         string Name { get; }
         TimeSpan TotalTimeActive { get; }
+        IBucket Bucket { get; set; }
+        IEnumerable<IClockPeriod> ClockPeriods { get; }
 
         void SetNotActive();
         void SetActive();

@@ -21,9 +21,15 @@
         </Label>
         <Label Content="Session" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Margin="84,10,0,0" VerticalAlignment="Top" Width="704"/>
         <Label Content="Active Application:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="84,52,0,0" VerticalAlignment="Top" Width="119"/>
-        <Label Content="{Binding ActiveApplication}" HorizontalAlignment="Left" Margin="203,52,0,0" VerticalAlignment="Top" Width="358" Height="26"/>
-        <Label Content="Time Worked Today:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="84,78,0,0" VerticalAlignment="Top" Width="119"/>
-        <Label Content="{Binding TotalTimeWorked}" HorizontalAlignment="Left" Margin="203,78,0,0" VerticalAlignment="Top" Width="155" Height="26"/>
-        <Label Content="Last 7 Days" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Margin="84,144,0,0" VerticalAlignment="Top" Width="704"/>
+        <Label Content="{Binding ActiveApplicationName}" HorizontalAlignment="Left" Margin="203,52,0,0" VerticalAlignment="Top" Width="353" Height="26"/>
+        <Label Content="Time Worked Today:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="84,230,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="{Binding TotalTimeWorked}" HorizontalAlignment="Left" Margin="203,230,0,0" VerticalAlignment="Top" Width="155" Height="26"/>
+        <Label Content="Last 7 Days" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Margin="84,256,0,0" VerticalAlignment="Top" Width="704"/>
+        <ListView ItemsSource="{Binding ClockingPeriods}" HorizontalAlignment="Left" Height="100" Margin="203,104,0,0" VerticalAlignment="Top" Width="358"/>
+        <Label Content="ApplicationClockings:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="63,142,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Time Active:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="79,78,0,0" VerticalAlignment="Top" Width="124"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="203,78,0,0" VerticalAlignment="Top" Height="26" Width="353"/>
+        <Label Content="Total Application Time:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="63,204,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label Content="{Binding TotalApplicationTime}" HorizontalAlignment="Left" Margin="203,204,0,0" VerticalAlignment="Top" Width="259" Height="26"/>
     </Grid>
 </UserControl>

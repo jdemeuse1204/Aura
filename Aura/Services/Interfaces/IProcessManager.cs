@@ -15,5 +15,7 @@ namespace Aura.Services.Interfaces
         void SaveProcesses(IEnumerable<IWindowsProcess> processes);
         void SaveSession(Session session);
         Session GetSession();
+        IEnumerable<string> GetActiveTimePeriods(IWindowsProcess process);
+        string GetTotalActiveApplicationTime(IWindowsProcess process);
     }
 }

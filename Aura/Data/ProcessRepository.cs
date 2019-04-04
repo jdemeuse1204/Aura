@@ -17,27 +17,23 @@ namespace Aura.Data
     public class ProcessRepository : IProcessRepository
     {
         private readonly IApplicationSettings ApplicationSettings;
-        private readonly JsonDataWriter JsonDataWriter;
-        private readonly JsonDataReader JsonDataReader;
+        private readonly IProcessJsonDataReaderWriter ProcessJsonDataWriter;
 
         [Inject]
-        public ProcessRepository(IApplicationSettings applicationSettings)
+        public ProcessRepository(IApplicationSettings applicationSettings, IProcessJsonDataReaderWriter processJsonDataWriter)
         {
             ApplicationSettings = applicationSettings;
-            var logFileLocation = Path.Combine(ApplicationSettings.MainFileDirectory, ApplicationSettings.DataFileDirectory);
-
-            JsonDataWriter = new JsonDataWriter(logFileLocation, ApplicationSettings.DataFileName);
-            JsonDataReader = new JsonDataReader(logFileLocation, ApplicationSettings.DataFileName);
+            ProcessJsonDataWriter = processJsonDataWriter;
         }
 
         public void Save(IEnumerable<IWindowsProcess> processes)
         {
-            JsonDataWriter.Write(processes);
+            ProcessJsonDataWriter.Write(processes);
         }
 
         public IEnumerable<IWindowsProcess> LoadSavedProcesses()
         {
-            return JsonDataReader.All<WindowsProcess>();
+            return ProcessJsonDataWriter.All<WindowsProcess>();
         }
     }
 }

@@ -1,17 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using Aura.DataAccess.Json.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.DataAccess.Json
 {
-    public class JsonDataReader
+    public class JsonDataReaderWriter : IJsonDataReaderWriter
     {
         private readonly string FileNameAndPath;
-        public JsonDataReader(string filePath, string fileName)
+        public JsonDataReaderWriter(string filePath, string fileName)
         {
             FileNameAndPath = Path.Combine(filePath, fileName);
 
@@ -21,6 +20,7 @@ namespace Aura.DataAccess.Json
             }
         }
 
+        #region Reading
         public T Get<T>() where T : class
         {
             if (File.Exists(FileNameAndPath) == false)
@@ -76,5 +76,37 @@ namespace Aura.DataAccess.Json
                 return iterator.ToList();
             }
         }
+        #endregion
+
+        #region Writing
+        public void Remove<T>(Func<T, bool> expression) where T : class
+        {
+            lock (FileNameAndPath)
+            {
+                using (var iterator = new JsonDataIterator<T>(FileNameAndPath))
+                {
+                    var itemsToSave = iterator.Where(w => expression(w) == false);
+
+                    Write(itemsToSave);
+                }
+            }
+        }
+
+        public void Write<T>(IEnumerable<T> items) where T : class
+        {
+            lock (FileNameAndPath)
+            {
+                File.WriteAllLines(FileNameAndPath, items.Select(JsonConvert.SerializeObject));
+            }
+        }
+
+        public void Write<T>(T item) where T : class
+        {
+            lock (FileNameAndPath)
+            {
+                File.WriteAllText(FileNameAndPath, JsonConvert.SerializeObject(item));
+            }
+        }
+        #endregion
     }
 }

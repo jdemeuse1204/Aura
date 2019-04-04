@@ -1,5 +1,6 @@
 ﻿using Aura.AddOns;
 using Aura.AddOns.Step;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,19 @@ namespace Aura.Models
     public class WindowsProcess : IWindowsProcess
     {
         public WindowsProcess(string title, string processName, int id)
+            : this(new Bucket(), new Stack<ClockPeriod>())
         {
             this.Key = string.Join(":", title, processName);
-            ClockPeriods = new List<ClockPeriod>();
             Ids = new List<int> { id };
             ProcessName = processName;
             Title = title;
+        }
+
+        [JsonConstructor]
+        public WindowsProcess(Bucket bucket, IEnumerable<ClockPeriod> clockPeriods)
+        {
+            Bucket = bucket;
+            ClockPeriods = clockPeriods;
         }
 
         public IEnumerable<int> Ids { get; set; }
@@ -27,7 +35,8 @@ namespace Aura.Models
         public bool IsActive { get; set; }
         public bool IsRunning { get; set; }
         public IntPtr Handle { get; set; }
-        public readonly IEnumerable<ClockPeriod> ClockPeriods;
+        public IBucket Bucket { get; set; }
+        public IEnumerable<IClockPeriod> ClockPeriods { get; }
         public string Name
         {
             get
@@ -59,7 +68,7 @@ namespace Aura.Models
         {
             IsRunning = true;
             IsActive = true;
-            ((List<ClockPeriod>)ClockPeriods).Add(new ClockPeriod());
+            ((Stack<ClockPeriod>)ClockPeriods).Push(new ClockPeriod());
         }
 
         public override bool Equals(object obj)

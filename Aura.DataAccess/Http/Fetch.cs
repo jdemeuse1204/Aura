@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Aura.DataAccess.Http.Interfaces;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
 namespace Aura.DataAccess.Http
 {
-    public class Fetch
+    public class Fetch : IFetch
     {
         private readonly string _url;
         private Dictionary<string, string> _headers;

@@ -1,16 +1,12 @@
 ﻿using Aura.AddOns.Step;
 using Aura.Common;
 using Aura.Common.Extensions;
-using Aura.Models;
 using Aura.Processors;
 using Aura.Services.Interfaces;
 using Aura.ViewModels.Base;
 using Ninject;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
@@ -56,6 +52,11 @@ namespace Aura.ViewModels
 
         public void SuspendHandler()
         {
+            if (MessageBox.Show("Suspend Tracking?", "Are you sure?", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             this.SetProperty(w => w.ResumeButtonVisibility, Visibility.Visible);
             this.SetProperty(w => w.SuspendButtonVisibility, Visibility.Hidden);
 
