@@ -28,6 +28,17 @@ namespace Aura.DataAccess.Json
             FileStream.Dispose();
         }
 
+        public IEnumerable<string> GetAllLines()
+        {
+            var lines = new List<string>();
+            string line;
+
+            while ((line = StreamReader.ReadLine()) != null)
+            {
+                yield return line;
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             string line;

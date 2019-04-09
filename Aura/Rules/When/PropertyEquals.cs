@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace Aura.Rules.When
 {
-    public class PropertyEquals<T> : WhenBase, IWhen<T> where T : class
+    public class PropertyEquals<T> : WhenBase, IRule, IWhen<T> where T : class
     {
-        public bool IsTrue<K>(T instance, Expression<Func<T, K>> property, K compareValue)
+        public PropertyEquals(string propertyName) : base(nameof(PropertyEquals<T>), propertyName)
         {
-            return When(instance, property, (K propertyValue) =>
+        }
+
+        public bool IsTrue<K>(T instance, string propertyName, K compareValue)
+        {
+            return When(instance, propertyName, (K propertyValue) =>
             {
                 return propertyValue != null &&
                     propertyValue is string propertyValueString &&

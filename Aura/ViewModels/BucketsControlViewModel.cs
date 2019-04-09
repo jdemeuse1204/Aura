@@ -1,6 +1,8 @@
 ﻿using Aura.AddOns.Step;
 using Aura.Common;
 using Aura.Common.Extensions;
+using Aura.Modals;
+using Aura.Modals.Interfaces;
 using Aura.Models;
 using Aura.Services.Interfaces;
 using Aura.ViewModels.Base;
@@ -22,6 +24,7 @@ namespace Aura.ViewModels
         public IBucket Bucket { get; set; }
 
         private readonly IBucketsManager BucketsManager;
+        private readonly IModalService ModalService;
 
         #region Commands
         public ICommand NewBucketClick => new CommandHandler(() => NewBucketHandler(), true);
@@ -30,25 +33,23 @@ namespace Aura.ViewModels
         #endregion
 
         [Inject]
-        public BucketsControlViewModel(IBucketsManager bucketsManager)
+        public BucketsControlViewModel(IBucketsManager bucketsManager, IModalService modalService)
         {
             BucketsManager = bucketsManager;
+            ModalService = modalService;
 
-            var buckets = BucketsManager.GetBuckets();
-            Buckets = new ObservableCollection<IBucket>(buckets);
+            Buckets = new ObservableCollection<IBucket>(BucketsManager.GetBuckets());
         }
 
         private void NewBucketHandler()
         {
-            Bucket = new Bucket
+            var result = ModalService.Show(ModalTypes.AddBucket);
+
+            if (result.HasValue)
             {
-                Id = Guid.NewGuid()
-            };
-
-            Buckets.Add(Bucket);
-
-            this.RaisePropertyChanged(w => w.Buckets);
-            this.RaisePropertyChanged(w => w.Bucket);
+                // done, refresh buckets
+                this.SetProperty(w => w.Buckets, new ObservableCollection<IBucket>(BucketsManager.GetBuckets()));
+            }
         }
 
         private void DeleteBucketHandler()

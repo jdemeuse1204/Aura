@@ -16,5 +16,6 @@ namespace Aura.DataAccess.Json.Interfaces
         void Remove<T>(Func<T, bool> expression) where T : class;
         void Write<T>(IEnumerable<T> items) where T : class;
         void Write<T>(T item) where T : class;
+        bool HasData();
     }
 }

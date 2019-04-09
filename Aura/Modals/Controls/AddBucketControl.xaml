@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Aura.Modals.Controls.AddBucketControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Aura.Modals.Controls"
+             xmlns:ValueConverters="clr-namespace:Aura.Common.ValueConverters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=AddBucketControl}">
+    <UserControl.Resources>
+        <ValueConverters:WhenRuleItemTypeVisibilityValueConverter x:Key="WhenRuleItemTypeVisibilityValueConverter" />
+        <ValueConverters:ThenRuleItemTypeVisibilityValueConverter x:Key="ThenRuleItemTypeVisibilityValueConverter" />
+        <ValueConverters:BucketRuleHasRuleVisibilityValueConverter x:Key="BucketRuleHasRuleVisibilityValueConverter" />
+        <ValueConverters:BucketRuleHasNoRuleVisibilityValueConverter x:Key="BucketRuleHasNoRuleVisibilityValueConverter" />
+        <Style x:Key="NoHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+        <Style  x:Key="WhenThenLabel" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="CircleAddButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#004085" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="30,30,30,30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding Foreground}" BorderThickness="3" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="LightBlue"/>
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate x:Key="RuleItem">
+            <StackPanel Height="86" Width="700">
+                <StackPanel Visibility="{Binding RuleItemType, Converter={StaticResource WhenRuleItemTypeVisibilityValueConverter}}">
+                    <Border BorderBrush="RoyalBlue" BorderThickness="3" Margin="0, 5, 0 5" CornerRadius="20,20,20,20">
+                        <WrapPanel>
+                            <Label Content="When" HorizontalContentAlignment="Center" Width="62" Margin="50, 0, 0, 0" FontSize="20" Background="RoyalBlue" Foreground="White"/>
+                            <Canvas Width="580" Height="38">
+                                <Button Style="{StaticResource SuccessButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasNoRuleVisibilityValueConverter}}" Content="Design +" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Left="10" Canvas.Top="5"/>
+                                <Button Style="{StaticResource DangerButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasRuleVisibilityValueConverter}}" Content="Delete" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Right="10" Canvas.Top="5"/>
+                            </Canvas>
+                        </WrapPanel>
+                    </Border>
+                    <Button Style="{StaticResource CircleAddButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasRuleVisibilityValueConverter}}" Content="+" HorizontalAlignment="Left" Margin="20, 0, 0, 0"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding RuleItemType, Converter={StaticResource ThenRuleItemTypeVisibilityValueConverter}}">
+                    <Border BorderBrush="ForestGreen" BorderThickness="3" Margin="0, 5, 0 5" CornerRadius="20,20,20,20">
+                        <WrapPanel>
+                            <Label Content="Then" HorizontalContentAlignment="Center" Width="62" Margin="50, 0, 0, 0" FontSize="20" Background="ForestGreen" Foreground="White"/>
+                            <Canvas Width="580" Height="38">
+                                <Label Content="{Binding Title}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Canvas.Left="16" Canvas.Top="5"/>
+                                <Button Style="{StaticResource DangerButton}" Content="Delete" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Right="10" Canvas.Top="5"/>
+                            </Canvas>
+                        </WrapPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+    <Grid>
+        <Label Content="Name:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="0,43,0,0" VerticalAlignment="Top" Width="93"/>
+        <TextBox Style="{StaticResource TextBox}" HorizontalAlignment="Left" Height="26" Margin="93,43,0,0" TextWrapping="Wrap" Text="{Binding Item.Name}" VerticalAlignment="Top" Width="228"/>
+        <Label Content="Rule Creator" HorizontalAlignment="Left" Margin="0,90,0,0" FontSize="26" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="800"/>
+        <ListBox ItemsSource="{Binding Item.Rules}" ItemTemplate="{StaticResource RuleItem}" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="305" Margin="10,135,0,0" VerticalAlignment="Top" Width="780" />
+        <Label Content="Bucket Information" HorizontalAlignment="Left" Margin="0,-2,0,0" FontSize="26" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="800"/>
+        
+    </Grid>
+</UserControl>

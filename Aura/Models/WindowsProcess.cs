@@ -21,7 +21,7 @@ namespace Aura.Models
         }
 
         [JsonConstructor]
-        public WindowsProcess(Bucket bucket, IEnumerable<ClockPeriod> clockPeriods)
+        public WindowsProcess(Bucket bucket, Stack<ClockPeriod> clockPeriods)
         {
             Bucket = bucket;
             ClockPeriods = clockPeriods;
@@ -30,13 +30,13 @@ namespace Aura.Models
         public IEnumerable<int> Ids { get; set; }
         public string Key { get; set; }
         public DateTime StartTime { get; set; }
-        public string ProcessName { get; private set; }
-        public string Title { get; private set; }
+        public string ProcessName { get; set; }
+        public string Title { get; set; }
         public bool IsActive { get; set; }
         public bool IsRunning { get; set; }
         public IntPtr Handle { get; set; }
         public IBucket Bucket { get; set; }
-        public IEnumerable<IClockPeriod> ClockPeriods { get; }
+        public IEnumerable<IClockPeriod> ClockPeriods { get; set; }
         public string Name
         {
             get

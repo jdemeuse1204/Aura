@@ -5,11 +5,15 @@ using System.Linq.Expressions;
 
 namespace Aura.Rules.When
 {
-    public class PropertyContains<T> : WhenBase, IWhen<T> where T : class
+    public class PropertyContains<T> : WhenBase, IRule, IWhen<T> where T : class
     {
-        public bool IsTrue<K>(T instance, Expression<Func<T, K>> property, K compareValue)
+        public PropertyContains(string propertyName) : base(nameof(PropertyContains<T>), propertyName)
         {
-            return When(instance, property, (K propertyValue) => 
+        }
+
+        public bool IsTrue<K>(T instance, string propertyName, K compareValue)
+        {
+            return When(instance, propertyName, (K propertyValue) => 
             {
                 return propertyValue != null && 
                     propertyValue is string propertyValueString && 

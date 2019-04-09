@@ -76,6 +76,19 @@ namespace Aura.DataAccess.Json
                 return iterator.ToList();
             }
         }
+
+        public bool HasData()
+        {
+            if (File.Exists(FileNameAndPath) == false)
+            {
+                return false;
+            }
+
+            using (var iterator = new JsonDataIterator<object>(FileNameAndPath))
+            {
+                return iterator.GetAllLines().Any(w => string.IsNullOrEmpty(w) == false);
+            }
+        }
         #endregion
 
         #region Writing

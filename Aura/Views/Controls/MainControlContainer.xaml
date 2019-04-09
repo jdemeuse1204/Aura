@@ -6,34 +6,34 @@
              xmlns:Controls="clr-namespace:Aura.Views.Controls"
              xmlns:ValueConverters="clr-namespace:Aura.Common.ValueConverters"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800"
+             d:DesignHeight="550" d:DesignWidth="900"
              DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainControlContainer}">
     <Grid>
-        <Canvas Visibility="{Binding IsDashboardControlVisible}" Margin="0,40,25,10">
+        <Canvas Visibility="{Binding IsDashboardControlVisible}" Margin="80,40,25,10">
             <Controls:DashboardControl Height="460" Width="785" />
         </Canvas>
 
-        <Canvas Visibility="{Binding IsSettingsControlVisible}" Margin="0,40,25,10">
+        <Canvas Visibility="{Binding IsSettingsControlVisible}" Margin="80,40,25,10">
             <Controls:SettingsControl Height="460" Width="785" />
         </Canvas>
 
-        <Canvas Visibility="{Binding IsTrackingControlVisible}" Margin="0,40,25,10">
+        <Canvas Visibility="{Binding IsTrackingControlVisible}" Margin="80,40,25,10">
             <Controls:TrackingControl Height="460" Width="785" />
         </Canvas>
 
-        <Canvas Visibility="{Binding IsCalendarControlVisible}" Margin="0,40,25,10">
+        <Canvas Visibility="{Binding IsCalendarControlVisible}" Margin="80,40,25,10">
             <Controls:CalendarControl Height="460" Width="785" />
         </Canvas>
 
-        <Canvas Visibility="{Binding IsBucketsControlVisible}" Margin="0,40,25,10">
+        <Canvas Visibility="{Binding IsBucketsControlVisible}" Margin="80,40,25,10">
             <Controls:BucketsControl Height="460" Width="785" />
         </Canvas>
 
-        <Button Content="Settings" Command="{Binding GoToSettingsClick}" HorizontalAlignment="Left" Margin="695,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Tracking" Command="{Binding GoToTrackingClick}" HorizontalAlignment="Left" Margin="615,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Buckets" Command="{Binding GoToBucketsClick}" HorizontalAlignment="Left" Margin="535,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Calendar" Command="{Binding GoToCalendarClick}" HorizontalAlignment="Left" Margin="455,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Dashboard" Command="{Binding GoToDashboardClick}" HorizontalAlignment="Left" Margin="375,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Reports" Command="{Binding GoToReportsClick}" HorizontalAlignment="Left" Margin="295,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="Settings" Command="{Binding GoToSettingsClick}" HorizontalAlignment="Left" Margin="0,180,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="Tracking" Command="{Binding GoToTrackingClick}" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="Buckets" Command="{Binding GoToBucketsClick}" HorizontalAlignment="Left" Margin="0,152,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="Calendar" Command="{Binding GoToCalendarClick}" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="Dashboard" Command="{Binding GoToDashboardClick}" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="Reports" Command="{Binding GoToReportsClick}" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top" Width="80"/>
     </Grid>
 </UserControl>

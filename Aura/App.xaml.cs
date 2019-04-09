@@ -4,9 +4,12 @@ using System.Threading.Tasks;
 namespace Aura
 {
     using Aura.Data;
+    using Aura.Data.Factories;
     using Aura.Data.Interfaces;
     using Aura.Data.Registry;
     using Aura.Data.Text;
+    using Aura.Modals;
+    using Aura.Modals.Interfaces;
     using Aura.Processors.Factories;
     using Aura.Processors.Factories.Interfaces;
     using Aura.Processors.ProcessingStep;
@@ -84,18 +87,24 @@ namespace Aura
             Container.Bind<IAddOnManager>().To<AddOnManager>();
             Container.Bind<IProcessManager>().To<ProcessManager>();
             Container.Bind<IBucketsManager>().To<BucketsManager>();
+            Container.Bind<IRuleManager>().To<RuleManager>();
 
             // Misc
             Container.Bind<IApplicationSettings>().To<ApplicationSettings>();
+            Container.Bind<IModalService>().To<ModalService>();
 
             // Repositories
             Container.Bind<ISessionRepository>().To<SessionRepository>();
             Container.Bind<IProcessRepository>().To<ProcessRepository>();
             Container.Bind<IBucketsRepository>().To<BucketsRepository>();
+            Container.Bind<IRuleRepository>().To<RuleRepository>();
 
-            // Factories
+            // Processor - Factories
             Container.Bind<IProcessingFactory>().To<ProcessingFactory>().WithConstructorArgument("kernel", Container);
             Container.Bind<IGeneralFactory>().To<GeneralFactory>();
+
+            // Data - Factories
+            Container.Bind<IRulesFactory>().To<RulesFactory>();
 
             // Steps
             Container.Bind<LoadProcessesRollupsStep>().ToSelf();
@@ -104,6 +113,7 @@ namespace Aura
             Container.Bind<IBucketsJsonDataReaderWriter>().To<BucketsJsonDataReaderWriter>().InSingletonScope();
             Container.Bind<IProcessJsonDataReaderWriter>().To<ProcessJsonDataReaderWriter>().InSingletonScope();
             Container.Bind<ISessionJsonDataReaderWriter>().To<SessionJsonDataReaderWriter>().InSingletonScope();
+            Container.Bind<IRuleJsonDataReaderWriter>().To<RuleJsonDataReaderWriter>().InSingletonScope();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Aura.Rules.Interfaces
 {
     public interface IWhen<T> where T : class
     {
-        bool IsTrue<K>(T instance, Expression<Func<T, K>> property, K compareValue);
+        bool IsTrue<K>(T instance, string propertyName, K compareValue);
     }
 }

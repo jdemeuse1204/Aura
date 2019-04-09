@@ -10,15 +10,6 @@
              BorderBrush="LightGray"
              BorderThickness="1">
     <Grid>
-        <Label Content="REPORTS" Background="RoyalBlue" Foreground="white" BorderBrush="LightGray" BorderThickness="1" HorizontalAlignment="Left" Margin="-193,199,0,0" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="444" Height="52">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
+        <Label Content="Reports" Foreground="RoyalBlue" HorizontalAlignment="Left" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Padding="0" Width="798"/>
     </Grid>
 </UserControl>

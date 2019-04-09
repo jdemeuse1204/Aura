@@ -1,5 +1,6 @@
 ﻿using Aura.Processors;
 using Aura.ViewModels.Base;
+using Aura.ViewModels.Modal;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,16 @@ namespace Aura.ViewModels.Base
         public ViewModel ReportsControl
         {
             get { return App.Container.Get<ReportsControlViewModel>(); }
+        }
+
+        public ViewModel ModalWindow
+        {
+            get { return App.Container.Get<ModalWindowViewModel>(); }
+        }
+
+        public ViewModel AddBucketControl
+        {
+            get { return App.Container.Get<AddBucketControlViewModel>(); }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aura.Rules.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,18 +9,21 @@ using System.Threading.Tasks;
 
 namespace Aura.Rules.When.Base
 {
-    public abstract class WhenBase
+    public abstract class WhenBase : RuleBase
     {
-        public bool When<T, K>(T instance, Expression<Func<T, K>> property, Func<K, bool> comparison) where T : class
+        public string PropertyName { get; }
+
+        public WhenBase(string ruleName, string propertyName)
+            : base(ruleName)
         {
-            if (property.Body is MemberExpression memberExpression)
-            {
-                K propertyValue = (K)((PropertyInfo)memberExpression.Member).GetValue(instance);
+            PropertyName = propertyName;
+        }
 
-                return comparison(propertyValue);
-            }
+        public bool When<T, K>(T instance, string propertyName, Func<K, bool> comparison) where T : class
+        {
+            K propertyValue = (K)typeof(T).GetProperty(propertyName).GetValue(instance);
 
-            return false;
+            return comparison(propertyValue);
         }
     }
 }

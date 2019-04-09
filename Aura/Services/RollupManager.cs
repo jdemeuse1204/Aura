@@ -13,7 +13,7 @@ namespace Aura.Services
     {
         public IEnumerable<IProcessRollup> RollupProcesses(IEnumerable<IWindowsProcess> processes)
         {
-            return processes.GroupBy(w => w.ProcessName).Select(w => new ProcessRollup(w.Key, w.ToList()));
+            return processes.GroupBy(w => w.ProcessName).Select(w => new ProcessRollup(w.Key, new Stack<IWindowsProcess>(w.ToList())));
         }
 
         public DateTime GetStartDate(IEnumerable<IProcessRollup> processRollups)

@@ -15,5 +15,6 @@ namespace Aura.Data.Interfaces
         string SessionFileDirectory { get; }
         string AddOnsFileDirectory { get; }
         string BucketsFileName { get; }
+        string RulesFileName { get; }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Repos\Aura\Aura\App.xaml
-8574981237
+101881022990
 
-89-96996272
-20-321080577
-Views\Controls\BucketsControl.xaml;Views\Controls\CalendarControl.xaml;Views\Controls\DashboardControl.xaml;Views\Controls\MainControlContainer.xaml;Views\Controls\ReportsControl.xaml;Views\Controls\TrackingControl.xaml;Views\Windows\MainWindow.xaml;Views\Controls\SettingsControl.xaml;
+115-1427474122
+21-458045778
+Modals\Controls\AddBucketControl.xaml;Modals\Windows\ModalWindow.xaml;Views\Controls\BucketsControl.xaml;Views\Controls\CalendarControl.xaml;Views\Controls\DashboardControl.xaml;Views\Controls\MainControlContainer.xaml;Views\Controls\ReportsControl.xaml;Views\Controls\TrackingControl.xaml;Views\Windows\MainWindow.xaml;Views\Controls\SettingsControl.xaml;
 
 False
 

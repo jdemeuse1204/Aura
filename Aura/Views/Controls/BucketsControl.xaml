@@ -14,17 +14,8 @@
         <ValueConverters:TempBucketNameValueConverter x:Key="TempBucketNameValueConverter" />
     </UserControl.Resources>
     <Grid>
-        <Label Content="BUCKETS" Background="RoyalBlue" Foreground="white" BorderBrush="LightGray" BorderThickness="1" HorizontalAlignment="Left" Margin="-193,199,0,0" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="444" Height="52">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <ListView ItemsSource="{Binding Buckets}" SelectedItem="{Binding Bucket}" HorizontalAlignment="Left" Height="407" Margin="67,41,0,0" VerticalAlignment="Top" Width="251">
+        <Label Content="Buckets" Foreground="RoyalBlue" HorizontalAlignment="Left" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Padding="0" Width="798"/>
+        <ListView ItemsSource="{Binding Buckets}" SelectedItem="{Binding Bucket}" HorizontalAlignment="Left" Height="364" Margin="10,53,0,0" VerticalAlignment="Top" Width="313">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -34,10 +25,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="New" Command="{Binding NewBucketClick}" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="67" Height="26"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Width="58" Height="26"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="New" Command="{Binding NewBucketClick}" HorizontalAlignment="Left" Margin="552,422,0,0" VerticalAlignment="Top" Width="67" Height="26"/>
+        <Button Style="{StaticResource DangerButton}" Content="Delete" HorizontalAlignment="Left" Margin="10,422,0,0" VerticalAlignment="Top" Width="58" Height="26"/>
         <Label Content="Name:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="323,53,0,0" VerticalAlignment="Top" Width="89"/>
-        <TextBox HorizontalAlignment="Left" Height="26" Margin="412,53,0,0" TextWrapping="Wrap" Text="{Binding Bucket.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="279"/>
-        <Button Content="Save" Command="{Binding SaveBucketClick}" HorizontalAlignment="Left" Margin="696,53,0,0" VerticalAlignment="Top" Width="69" Height="26"/>
+        <TextBox Height="26" Margin="412,53,15,0" TextWrapping="Wrap" Text="{Binding Bucket.Name, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource SuccessButton}" Content="Save" Command="{Binding SaveBucketClick}" Margin="714,422,15,0" VerticalAlignment="Top" Height="26"/>
     </Grid>
 </UserControl>

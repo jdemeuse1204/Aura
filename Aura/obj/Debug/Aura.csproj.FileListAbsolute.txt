@@ -68,3 +68,9 @@ C:\Repos\Aura\Aura\obj\Debug\Views\Controls\ReportsControl.g.cs
 C:\Repos\Aura\Aura\bin\Debug\Aura.AddOns.dll
 C:\Repos\Aura\Aura\bin\Debug\Aura.AddOns.pdb
 C:\Repos\Aura\Aura\obj\Debug\Views\Controls\ReportsControl.baml
+C:\Repos\Aura\Aura\bin\Debug\DeepCloner.dll
+C:\Repos\Aura\Aura\bin\Debug\DeepCloner.xml
+C:\Repos\Aura\Aura\obj\Debug\Modals\Controls\AddBucketControl.g.cs
+C:\Repos\Aura\Aura\obj\Debug\Modals\Windows\ModalWindow.g.cs
+C:\Repos\Aura\Aura\obj\Debug\Modals\Controls\AddBucketControl.baml
+C:\Repos\Aura\Aura\obj\Debug\Modals\Windows\ModalWindow.baml

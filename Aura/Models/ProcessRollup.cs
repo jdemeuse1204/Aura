@@ -11,17 +11,17 @@ namespace Aura.Models
     public class ProcessRollup : IProcessRollup
     {
         public ProcessRollup(string processName)
-            : this(processName, new List<IWindowsProcess>())
+            : this(processName, new Stack<IWindowsProcess>())
         {
         }
 
-        public ProcessRollup(string processName, IEnumerable<IWindowsProcess> windowsProcesses)
+        public ProcessRollup(string processName, Stack<IWindowsProcess> windowsProcesses)
         {
             ProcessName = processName;
             Processes = windowsProcesses;
         }
 
-        public string ProcessName { get; private set; }
+        public string ProcessName { get; set; }
         public bool IsRunning
         {
             get
@@ -51,7 +51,7 @@ namespace Aura.Models
                 throw new ArgumentException($"Process name {process.ProcessName} does not match {ProcessName}");
             }
 
-            ((List<IWindowsProcess>)Processes).Add(process);
+            ((Stack<IWindowsProcess>)Processes).Push(process);
         }
 
         public IEnumerable<IWindowsProcess> Processes { get; private set; }

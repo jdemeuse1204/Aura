@@ -37,6 +37,9 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DeepCloner, Version=0.10.0.0, Culture=neutral, PublicKeyToken=dc0b95cf99bf4e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeepCloner.0.10.2\lib\net40\DeepCloner.dll</HintPath>
+    </Reference>
     <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
     </Reference>
@@ -68,31 +71,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Behavior\ActionCommand.cs" />
+    <Compile Include="Common\Behavior\SelectionChangedBehavior.cs" />
     <Compile Include="Common\CommandHandler.cs" />
     <Compile Include="Common\Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Common\Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Common\Helpers\StringHelpers.cs" />
     <Compile Include="Common\Helpers\TimeSpanHelpers.cs" />
+    <Compile Include="Common\ValueConverters\BucketRuleHasNoRuleVisibilityValueConverter.cs" />
+    <Compile Include="Common\ValueConverters\BucketRuleHasRuleVisibilityValueConverter.cs" />
     <Compile Include="Common\ValueConverters\InvertVisibilityValueConverter.cs" />
     <Compile Include="Common\ValueConverters\TempBucketNameValueConverter.cs" />
+    <Compile Include="Common\ValueConverters\ThenRuleItemTypeVisibilityValueConverter.cs" />
     <Compile Include="Common\ValueConverters\TimeSpanValueConverter.cs" />
+    <Compile Include="Common\ValueConverters\WhenRuleItemTypeVisibilityValueConverter.cs" />
     <Compile Include="Data\BucketsRepository.cs" />
+    <Compile Include="Data\Factories\RulesFactory.cs" />
     <Compile Include="Data\Interfaces\IApplicationSettings.cs" />
     <Compile Include="Data\Interfaces\IBucketsJsonDataReaderWriter.cs" />
     <Compile Include="Data\Interfaces\IBucketsRepository.cs" />
     <Compile Include="Data\Interfaces\IProcessJsonDataReaderWriter.cs" />
     <Compile Include="Data\Interfaces\IProcessRepository.cs" />
+    <Compile Include="Data\Interfaces\IRuleJsonDataReaderWriter.cs" />
+    <Compile Include="Data\Interfaces\IRuleRepository.cs" />
+    <Compile Include="Data\Interfaces\IRulesFactory.cs" />
     <Compile Include="Data\Interfaces\ISessionJsonDataReaderWriter.cs" />
     <Compile Include="Data\Interfaces\ISessionRepository.cs" />
     <Compile Include="Data\ProcessRepository.cs" />
     <Compile Include="Data\Registry\ApplicationSettings.cs" />
+    <Compile Include="Data\RuleRepository.cs" />
     <Compile Include="Data\SessionRepository.cs" />
     <Compile Include="Data\Text\BucketsJsonDataReaderWriter.cs" />
     <Compile Include="Data\Text\ProcessJsonDataReaderWriter.cs" />
+    <Compile Include="Data\Text\RuleJsonDataReaderWriter.cs" />
     <Compile Include="Data\Text\SessionJsonDataReaderWriter.cs" />
+    <Compile Include="Modals\Controls\AddBucketControl.xaml.cs">
+      <DependentUpon>AddBucketControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Interfaces\IModalService.cs" />
+    <Compile Include="Modals\ModalService.cs" />
+    <Compile Include="Modals\ModalTypes.cs" />
+    <Compile Include="Modals\Windows\ModalWindow.xaml.cs">
+      <DependentUpon>ModalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bucket.cs" />
+    <Compile Include="Models\BucketRule.cs" />
     <Compile Include="Models\ClockPeriod.cs" />
     <Compile Include="Models\ProcessRollup.cs" />
+    <Compile Include="Models\RuleItem.cs" />
     <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Types\RuleItemType.cs" />
     <Compile Include="Models\WindowsProcess.cs" />
     <Compile Include="Processors\Factories\GeneralFactory.cs" />
     <Compile Include="Processors\Factories\Interfaces\IGeneralFactory.cs" />
@@ -116,9 +144,10 @@
     <Compile Include="Processors\ProcessingStep\SaveProcessesStep.cs" />
     <Compile Include="Processors\ProcessingStep\SaveSessionStep.cs" />
     <Compile Include="Processors\ProcessingStep\WindowsCurrentRunningProcessesStep.cs" />
+    <Compile Include="Rules\Base\RuleBase.cs" />
+    <Compile Include="Rules\Interfaces\IRule.cs" />
     <Compile Include="Rules\Interfaces\IThen.cs" />
     <Compile Include="Rules\Interfaces\IWhen.cs" />
-    <Compile Include="Rules\Rule.cs" />
     <Compile Include="Rules\Then\AssignBucket.cs" />
     <Compile Include="Rules\Then\Base\ThenBase.cs" />
     <Compile Include="Rules\When\Base\WhenBase.cs" />
@@ -132,8 +161,10 @@
     <Compile Include="Services\Interfaces\IBucketsManager.cs" />
     <Compile Include="Services\Interfaces\IProcessManager.cs" />
     <Compile Include="Services\Interfaces\IRollupManager.cs" />
+    <Compile Include="Services\Interfaces\IRuleManager.cs" />
     <Compile Include="Services\ProcessManager.cs" />
     <Compile Include="Services\RollupManager.cs" />
+    <Compile Include="Services\RuleManager.cs" />
     <Compile Include="Utilities\WindowsApi.cs" />
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
@@ -142,6 +173,8 @@
     <Compile Include="ViewModels\DashboardControlViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainControlContainerViewModel.cs" />
+    <Compile Include="ViewModels\Modal\AddBucketControlViewModel.cs" />
+    <Compile Include="ViewModels\Modal\ModalWindowViewModel.cs" />
     <Compile Include="ViewModels\ReportsControlViewModel.cs" />
     <Compile Include="ViewModels\SettingsControlViewModel.cs" />
     <Compile Include="ViewModels\TrackingControlViewModel.cs" />
@@ -173,6 +206,14 @@
     <Compile Include="Views\Controls\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modals\Controls\AddBucketControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\Windows\ModalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\BucketsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
