@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <None Remove="Assets\Images\back-to-top.png" />
-    <None Remove="Assets\Images\iconfinder_layout-grid-table-adjust-organize_3209299.png" />
+    <None Remove="Assets\Images\iconfinder_grid-2_293637.png" />
+    <None Remove="Assets\Images\iconfinder_menu-24_103174.png" />
     <None Remove="Modals\Controls\AddBucketControl.xaml" />
     <None Remove="Modals\Windows\ModalWindow.xaml" />
     <None Remove="Views\Controls\BucketsControl.xaml" />
@@ -25,7 +26,10 @@
     <Content Include="Assets\Images\back-to-top.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\iconfinder_layout-grid-table-adjust-organize_3209299.png">
+    <Content Include="Assets\Images\iconfinder_grid-2_293637.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\iconfinder_menu-24_103174.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

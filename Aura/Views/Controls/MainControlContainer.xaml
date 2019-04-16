@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Controls="clr-namespace:Aura.Views.Controls"
              xmlns:ValueConverters="clr-namespace:Aura.Common.ValueConverters"
+             xmlns:ViewModelLocator="clr-namespace:Aura.ViewModels.Base"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="900"
-             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainControlContainer}">
+             ViewModelLocator:DynamicViewModelLocator.IsAutomaticLocator="True">
     <UserControl.Resources>
         <ValueConverters:IsVisibileColorValueConverter x:Key="IsVisibileColorValueConverter" />
     </UserControl.Resources>

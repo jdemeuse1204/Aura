@@ -6,11 +6,10 @@
              xmlns:local="clr-namespace:Aura.Views.Controls"
              xmlns:ValueConverters="clr-namespace:Aura.Common.ValueConverters"
              xmlns:Behavior="clr-namespace:Aura.Common.Behavior"
+             xmlns:ViewModelLocator="clr-namespace:Aura.ViewModels.Base"
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="800"
-             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=LiveTrackingControl}"
-             BorderBrush="LightGray"
-             BorderThickness="1">
+             ViewModelLocator:DynamicViewModelLocator.IsAutomaticLocator="True">
     <Grid>
         <Grid.Resources>
             <Style TargetType="ListViewItem">
@@ -30,10 +29,9 @@
             <ValueConverters:StringEqualsVisibilityValueConverter x:Key="StringEqualsVisibilityValueConverter" />
         </Grid.Resources>
 
-        <!--<ComboBox ItemsSource="{Binding FilterTypes}" SelectedItem="{Binding VisibleItemsControl}" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="100" Margin="683,105,0,0"/>-->
-        <Button Style="{StaticResource SecondaryButton}" Content="All Processes" Visibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,44,0,0" Width="101"/>
-        <Button Style="{StaticResource IconButton}" Content="{StaticResource GridFiltering}" Visibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="116,44,0,0" Width="101"/>
-        <ListView ItemsSource="{Binding ProcessClockings}" Margin="10,70,15,10" VirtualizingPanel.ScrollUnit="Pixel" AlternationCount="2" Visibility="{Binding VisibleItemsControl, Converter={StaticResource StringEqualsVisibilityValueConverter}, ConverterParameter='OrderedList'}">
+        <Button Style="{StaticResource IconButton}" Content="{StaticResource ListFiltering}" Command="{Binding ShowListViewClick}" Visibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="81,40,0,0" Width="30"/>
+        <Button Style="{StaticResource IconButton}" Content="{StaticResource GridFiltering}" Command="{Binding ShowDataGridClick}" Visibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="116,40,0,0" Width="30"/>
+        <ListView ItemsSource="{Binding ProcessClockings}" Margin="10,70,15,10" VirtualizingPanel.ScrollUnit="Pixel" AlternationCount="2" Visibility="{Binding ListViewVisibility}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -53,7 +51,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <DataGrid ItemsSource="{Binding Rollups}" Margin="10,70,15,10" AutoGenerateColumns="False" IsReadOnly="True" VirtualizingPanel.ScrollUnit="Pixel" Visibility="{Binding VisibleItemsControl, Converter={StaticResource StringEqualsVisibilityValueConverter}, ConverterParameter='AllProcesses'}">
+        <DataGrid ItemsSource="{Binding Rollups}" Margin="10,70,15,10" AutoGenerateColumns="False" IsReadOnly="True" VirtualizingPanel.ScrollUnit="Pixel" Visibility="{Binding DataGridVisibility}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessName}" Width="150"/>
                 <DataGridTextColumn Header="Is Running" Binding="{Binding IsRunning}" />

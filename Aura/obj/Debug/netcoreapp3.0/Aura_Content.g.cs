@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/back-to-top.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/iconfinder_layout-grid-table-adjust-organize_3209299.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/iconfinder_grid-2_293637.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/iconfinder_menu-24_103174.png")]
 
 

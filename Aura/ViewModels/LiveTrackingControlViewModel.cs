@@ -34,24 +34,17 @@ namespace Aura.ViewModels
         public ObservableCollection<IBucket> Buckets { get; set; }
         public Visibility ResumeButtonVisibility { get; set; }
         public Visibility SuspendButtonVisibility { get; set; }
-        public List<LiveTrackingFilterType> FilterTypes { get; set; }
 
-        public LiveTrackingFilterType _visibleItemsControl;
-        public LiveTrackingFilterType VisibleItemsControl
-        {
-            get { return _visibleItemsControl; }
-            set
-            {
-                _visibleItemsControl = value;
-                this.RaisePropertyChanged(w => w.VisibleItemsControl);
-            }
-        }
+        public Visibility ListViewVisibility { get; set; }
+        public Visibility DataGridVisibility { get; set; }
 
         #region Commands
         public ICommand SuspendClick => new CommandHandler(() => SuspendHandler(), true);
         public ICommand ResumeClick => new CommandHandler(() => ResumeHandler(), true);
         public ActionCommand<object> ChangeBucketClick => new ActionCommand<object>(ChangeBucketHandler);
-        public ActionCommand<object> FilterTypeSelectionChanged => new ActionCommand<object>(FilterTypeSelectionChangedHander);
+
+        public ICommand ShowListViewClick => new CommandHandler(() => ShowListViewHander(), true);
+        public ICommand ShowDataGridClick => new CommandHandler(() => ShowDataGridHandler(), true);
         #endregion
 
         [Inject]
@@ -65,13 +58,6 @@ namespace Aura.ViewModels
 
             Buckets = new ObservableCollection<IBucket>(BucketsManager.GetBuckets());
 
-            FilterTypes = new List<LiveTrackingFilterType>
-            {
-                LiveTrackingFilterType.OrderedList,
-                LiveTrackingFilterType.AllProcesses
-            };
-            VisibleItemsControl = LiveTrackingFilterType.AllProcesses;
-
             MainProcessor.OnAfterRun += MainProcessor_OnAfterRun;
             MainProcessor.Run();
             
@@ -80,6 +66,9 @@ namespace Aura.ViewModels
 
             ResumeButtonVisibility = Visibility.Hidden;
             SuspendButtonVisibility = Visibility.Visible;
+
+            ListViewVisibility = Visibility.Visible;
+            DataGridVisibility = Visibility.Hidden;
         }
 
         public void SuspendHandler()
@@ -93,6 +82,18 @@ namespace Aura.ViewModels
             this.SetProperty(w => w.SuspendButtonVisibility, Visibility.Hidden);
 
             Timer.Stop();
+        }
+
+        public void ShowListViewHander()
+        {
+            this.SetProperty(w => w.ListViewVisibility, Visibility.Visible);
+            this.SetProperty(w => w.DataGridVisibility, Visibility.Hidden);
+        }
+
+        public void ShowDataGridHandler()
+        {
+            this.SetProperty(w => w.ListViewVisibility, Visibility.Hidden);
+            this.SetProperty(w => w.DataGridVisibility, Visibility.Visible);
         }
 
         public void ResumeHandler()

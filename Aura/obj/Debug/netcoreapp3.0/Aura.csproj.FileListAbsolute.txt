@@ -94,4 +94,5 @@ C:\Repos\Aura\Aura\obj\Debug\netcoreapp3.0\Aura.dll
 C:\Repos\Aura\Aura\obj\Debug\netcoreapp3.0\Aura.pdb
 C:\Repos\Aura\Aura\bin\Debug\netcoreapp3.0\Assets\Images\back-to-top.png
 C:\Repos\Aura\Aura\obj\Debug\netcoreapp3.0\Aura_Content.g.cs
-C:\Repos\Aura\Aura\bin\Debug\netcoreapp3.0\Assets\Images\iconfinder_layout-grid-table-adjust-organize_3209299.png
+C:\Repos\Aura\Aura\bin\Debug\netcoreapp3.0\Assets\Images\iconfinder_grid-2_293637.png
+C:\Repos\Aura\Aura\bin\Debug\netcoreapp3.0\Assets\Images\iconfinder_menu-24_103174.png

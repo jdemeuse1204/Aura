@@ -18,6 +18,9 @@ namespace Aura
     using Ninject;
     using System.Windows;
     using System.Linq;
+    using Aura.ViewModels.Base;
+    using System;
+    using Aura.ViewModels;
 
     /// <summary>
     /// Interaction logic for App.xaml

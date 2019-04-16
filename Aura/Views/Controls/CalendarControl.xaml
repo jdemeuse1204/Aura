@@ -4,11 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Aura.Views.Controls"
+             xmlns:ViewModelLocator="clr-namespace:Aura.ViewModels.Base"
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="800"
-             DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=CalendarControl}"
-             BorderBrush="LightGray"
-             BorderThickness="1">
+             ViewModelLocator:DynamicViewModelLocator.IsAutomaticLocator="True">
     <Grid>
         <Label Content="Calendar" Foreground="RoyalBlue" HorizontalAlignment="Left" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Padding="0" Width="798"/>
     </Grid>
