@@ -1,8 +1,8 @@
-﻿using Aura.Processors;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Aura
 {
+    using Aura.Processors;
     using Aura.Data;
     using Aura.Data.Factories;
     using Aura.Data.Interfaces;
@@ -17,6 +17,8 @@ namespace Aura
     using Aura.Services.Interfaces;
     using Ninject;
     using System.Windows;
+    using System.Linq;
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -40,7 +42,7 @@ namespace Aura
             // Create our timer
             Timer = new System.Timers.Timer
             {
-                Interval = 5000
+                Interval = 10000
             };
 
             // configure the timer to processor on separate thread
@@ -61,13 +63,23 @@ namespace Aura
             // Dispose of timer
             Timer.Dispose();
 
+            // Application Event Processor
+            var applicationEventProcessor = Container.Get<IApplicationEventProcessor>();
+
+            // Process Application Exit Events
+            applicationEventProcessor.ProcessApplicationExitEvents();
+
             // Call base method
             base.OnExit(e);
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            // Get Add On Manager
+            // Application Event Processor
+            var applicationEventProcessor = Container.Get<IApplicationEventProcessor>();
+
+            // Process Application Start Events
+            applicationEventProcessor.ProcessApplicationStartEvents();
 
             // Start processor timer
             Timer.Start();
@@ -78,8 +90,9 @@ namespace Aura
 
         private void RegisterDependencies()
         {
-            // Bind Main Process, should only ever be one instance
+            // Processors should all be singletons, should only ever be one instance
             Container.Bind<IMainProcessor>().To<MainProcessor>().InSingletonScope();
+            Container.Bind<IApplicationEventProcessor>().To<ApplicationEventProcessor>().InSingletonScope();
             Container.Bind<System.Timers.Timer>().ToMethod(w => Timer).InSingletonScope();
 
             // Managers
@@ -101,13 +114,10 @@ namespace Aura
 
             // Processor - Factories
             Container.Bind<IProcessingFactory>().To<ProcessingFactory>().WithConstructorArgument("kernel", Container);
-            Container.Bind<IGeneralFactory>().To<GeneralFactory>();
+            Container.Bind<IGeneralFactory>().To<GeneralFactory>().WithConstructorArgument("kernel", Container);
 
             // Data - Factories
             Container.Bind<IRulesFactory>().To<RulesFactory>();
-
-            // Steps
-            Container.Bind<LoadProcessesRollupsStep>().ToSelf();
 
             // Json Writers (All in singleton scope so thread locking works)
             Container.Bind<IBucketsJsonDataReaderWriter>().To<BucketsJsonDataReaderWriter>().InSingletonScope();

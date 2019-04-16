@@ -1,14 +1,14 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns.Events;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Services.Interfaces
 {
     public interface IAddOnManager
     {
-        IEnumerable<IAddOnStep> GetAddOnStepsToProcess();
+        IEnumerable<IApplicationProcessEvent> GetAddOnApplicationProcessEvents();
+        IEnumerable<IApplicationStartEvent> GetAddOnApplicationStartEvents();
+        IEnumerable<IApplicationExitEvent> GetAddOnApplicationExitEvents();
     }
 }

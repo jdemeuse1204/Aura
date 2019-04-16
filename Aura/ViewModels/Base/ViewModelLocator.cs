@@ -1,12 +1,8 @@
-﻿using Aura.Processors;
-using Aura.ViewModels.Base;
-using Aura.ViewModels.Modal;
+﻿using Aura.ViewModels.Modal;
 using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.ViewModels.Base
 {
@@ -25,11 +21,6 @@ namespace Aura.ViewModels.Base
         public ViewModel MainControlContainer
         {
             get { return App.Container.Get<MainControlContainerViewModel>(); }
-        }
-
-        public ViewModel TrackingControl
-        {
-            get { return App.Container.Get<TrackingControlViewModel>(); }
         }
 
         public ViewModel CalendarControl
@@ -55,6 +46,11 @@ namespace Aura.ViewModels.Base
         public ViewModel AddBucketControl
         {
             get { return App.Container.Get<AddBucketControlViewModel>(); }
+        }
+
+        public ViewModel LiveTrackingControl
+        {
+            get { return App.Container.Get<LiveTrackingControlViewModel>(); }
         }
     }
 }

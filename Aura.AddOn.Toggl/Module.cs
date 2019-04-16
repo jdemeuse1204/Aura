@@ -1,10 +1,5 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns.Events;
 using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.AddOn.Toggl
 {
@@ -20,7 +15,7 @@ namespace Aura.AddOn.Toggl
 
         public override void Load()
         {
-            Bind<IAddOnStep>().To<SaveTimeToToggl>();
+            Bind<IApplicationProcessEvent>().To<SaveTimeToToggl>();
         }
     }
 }

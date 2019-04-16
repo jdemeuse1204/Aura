@@ -1,289 +1,77 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A8997C34-3AA4-4840-9042-EDA6CB9D14C1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Aura</RootNamespace>
-    <AssemblyName>Aura</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="DeepCloner, Version=0.10.0.0, Culture=neutral, PublicKeyToken=dc0b95cf99bf4e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\DeepCloner.0.10.2\lib\net40\DeepCloner.dll</HintPath>
-    </Reference>
-    <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <None Remove="Assets\Images\back-to-top.png" />
+    <None Remove="Assets\Images\iconfinder_layout-grid-table-adjust-organize_3209299.png" />
+    <None Remove="Modals\Controls\AddBucketControl.xaml" />
+    <None Remove="Modals\Windows\ModalWindow.xaml" />
+    <None Remove="Views\Controls\BucketsControl.xaml" />
+    <None Remove="Views\Controls\CalendarControl.xaml" />
+    <None Remove="Views\Controls\DashboardControl.xaml" />
+    <None Remove="Views\Controls\LiveTrackingControl.xaml" />
+    <None Remove="Views\Controls\MainControlContainer.xaml" />
+    <None Remove="Views\Controls\ReportsControl.xaml" />
+    <None Remove="Views\Controls\SettingsControl.xaml" />
+    <None Remove="Views\Windows\MainWindow.xaml" />
   </ItemGroup>
+
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Common\Behavior\ActionCommand.cs" />
-    <Compile Include="Common\Behavior\SelectionChangedBehavior.cs" />
-    <Compile Include="Common\CommandHandler.cs" />
-    <Compile Include="Common\Extensions\TimeSpanExtensions.cs" />
-    <Compile Include="Common\Extensions\ViewModelExtensions.cs" />
-    <Compile Include="Common\Helpers\StringHelpers.cs" />
-    <Compile Include="Common\Helpers\TimeSpanHelpers.cs" />
-    <Compile Include="Common\ValueConverters\BucketRuleHasNoRuleVisibilityValueConverter.cs" />
-    <Compile Include="Common\ValueConverters\BucketRuleHasRuleVisibilityValueConverter.cs" />
-    <Compile Include="Common\ValueConverters\InvertVisibilityValueConverter.cs" />
-    <Compile Include="Common\ValueConverters\TempBucketNameValueConverter.cs" />
-    <Compile Include="Common\ValueConverters\ThenRuleItemTypeVisibilityValueConverter.cs" />
-    <Compile Include="Common\ValueConverters\TimeSpanValueConverter.cs" />
-    <Compile Include="Common\ValueConverters\WhenRuleItemTypeVisibilityValueConverter.cs" />
-    <Compile Include="Data\BucketsRepository.cs" />
-    <Compile Include="Data\Factories\RulesFactory.cs" />
-    <Compile Include="Data\Interfaces\IApplicationSettings.cs" />
-    <Compile Include="Data\Interfaces\IBucketsJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Interfaces\IBucketsRepository.cs" />
-    <Compile Include="Data\Interfaces\IProcessJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Interfaces\IProcessRepository.cs" />
-    <Compile Include="Data\Interfaces\IRuleJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Interfaces\IRuleRepository.cs" />
-    <Compile Include="Data\Interfaces\IRulesFactory.cs" />
-    <Compile Include="Data\Interfaces\ISessionJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Interfaces\ISessionRepository.cs" />
-    <Compile Include="Data\ProcessRepository.cs" />
-    <Compile Include="Data\Registry\ApplicationSettings.cs" />
-    <Compile Include="Data\RuleRepository.cs" />
-    <Compile Include="Data\SessionRepository.cs" />
-    <Compile Include="Data\Text\BucketsJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Text\ProcessJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Text\RuleJsonDataReaderWriter.cs" />
-    <Compile Include="Data\Text\SessionJsonDataReaderWriter.cs" />
-    <Compile Include="Modals\Controls\AddBucketControl.xaml.cs">
-      <DependentUpon>AddBucketControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\Interfaces\IModalService.cs" />
-    <Compile Include="Modals\ModalService.cs" />
-    <Compile Include="Modals\ModalTypes.cs" />
-    <Compile Include="Modals\Windows\ModalWindow.xaml.cs">
-      <DependentUpon>ModalWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Bucket.cs" />
-    <Compile Include="Models\BucketRule.cs" />
-    <Compile Include="Models\ClockPeriod.cs" />
-    <Compile Include="Models\ProcessRollup.cs" />
-    <Compile Include="Models\RuleItem.cs" />
-    <Compile Include="Models\Session.cs" />
-    <Compile Include="Models\Types\RuleItemType.cs" />
-    <Compile Include="Models\WindowsProcess.cs" />
-    <Compile Include="Processors\Factories\GeneralFactory.cs" />
-    <Compile Include="Processors\Factories\Interfaces\IGeneralFactory.cs" />
-    <Compile Include="Processors\Factories\Interfaces\IProcessingFactory.cs" />
-    <Compile Include="Processors\Factories\ProcessingFactory.cs" />
-    <Compile Include="Processors\GeneralStep\Base\IGeneralStep.cs" />
-    <Compile Include="Processors\GeneralStep\DisposeUser.cs" />
-    <Compile Include="Processors\GeneralStep\SetSessionLockedStep.cs" />
-    <Compile Include="Processors\GeneralStep\SetSessionUnlockedStep.cs" />
-    <Compile Include="Processors\GeneralStep\SetUserActiveStep.cs" />
-    <Compile Include="Processors\GeneralStep\SetUserInactiveStep.cs" />
-    <Compile Include="Processors\IMainProcessor.cs" />
-    <Compile Include="Processors\MainProcessor.cs" />
-    <Compile Include="Processors\MainProcessorEventArgs.cs" />
-    <Compile Include="Processors\ProcessingStep\Base\IProcessingStep.cs" />
-    <Compile Include="Processors\ProcessingStep\InitializeProcessingStep.cs" />
-    <Compile Include="Processors\ProcessingStep\IsSessionLockedStep.cs" />
-    <Compile Include="Processors\ProcessingStep\IsUserAwayStep.cs" />
-    <Compile Include="Processors\ProcessingStep\LoadProcessesRollupsStep.cs" />
-    <Compile Include="Processors\ProcessingStep\LoadSessionStep.cs" />
-    <Compile Include="Processors\ProcessingStep\SaveProcessesStep.cs" />
-    <Compile Include="Processors\ProcessingStep\SaveSessionStep.cs" />
-    <Compile Include="Processors\ProcessingStep\WindowsCurrentRunningProcessesStep.cs" />
-    <Compile Include="Rules\Base\RuleBase.cs" />
-    <Compile Include="Rules\Interfaces\IRule.cs" />
-    <Compile Include="Rules\Interfaces\IThen.cs" />
-    <Compile Include="Rules\Interfaces\IWhen.cs" />
-    <Compile Include="Rules\Then\AssignBucket.cs" />
-    <Compile Include="Rules\Then\Base\ThenBase.cs" />
-    <Compile Include="Rules\When\Base\WhenBase.cs" />
-    <Compile Include="Rules\When\PropertyContains.cs" />
-    <Compile Include="Rules\When\PropertyEquals.cs" />
-    <Compile Include="Rules\When\PropertyEqualsIgnoreCase.cs" />
-    <Compile Include="Rules\When\PropertyEqualsRegex.cs" />
-    <Compile Include="Services\AddOnManager.cs" />
-    <Compile Include="Services\BucketsManager.cs" />
-    <Compile Include="Services\Interfaces\IAddOnManager.cs" />
-    <Compile Include="Services\Interfaces\IBucketsManager.cs" />
-    <Compile Include="Services\Interfaces\IProcessManager.cs" />
-    <Compile Include="Services\Interfaces\IRollupManager.cs" />
-    <Compile Include="Services\Interfaces\IRuleManager.cs" />
-    <Compile Include="Services\ProcessManager.cs" />
-    <Compile Include="Services\RollupManager.cs" />
-    <Compile Include="Services\RuleManager.cs" />
-    <Compile Include="Utilities\WindowsApi.cs" />
-    <Compile Include="ViewModels\Base\DelegateCommand.cs" />
-    <Compile Include="ViewModels\Base\ViewModel.cs" />
-    <Compile Include="ViewModels\BucketsControlViewModel.cs" />
-    <Compile Include="ViewModels\CalendarControlViewModel.cs" />
-    <Compile Include="ViewModels\DashboardControlViewModel.cs" />
-    <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
-    <Compile Include="ViewModels\MainControlContainerViewModel.cs" />
-    <Compile Include="ViewModels\Modal\AddBucketControlViewModel.cs" />
-    <Compile Include="ViewModels\Modal\ModalWindowViewModel.cs" />
-    <Compile Include="ViewModels\ReportsControlViewModel.cs" />
-    <Compile Include="ViewModels\SettingsControlViewModel.cs" />
-    <Compile Include="ViewModels\TrackingControlViewModel.cs" />
-    <Compile Include="Views\Controls\BucketsControl.xaml.cs">
-      <DependentUpon>BucketsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\CalendarControl.xaml.cs">
-      <DependentUpon>CalendarControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\DashboardControl.xaml.cs">
-      <DependentUpon>DashboardControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
+    <Content Include="Assets\Images\back-to-top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\iconfinder_layout-grid-table-adjust-organize_3209299.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MouseKeyHook" Version="5.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aura.AddOns\Aura.AddOns.csproj" />
+    <ProjectReference Include="..\Aura.DataAccess\Aura.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Modals\Controls\AddBucketControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\Controls\MainControlContainer.xaml.cs">
-      <DependentUpon>MainControlContainer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\ReportsControl.xaml.cs">
-      <DependentUpon>ReportsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\TrackingControl.xaml.cs">
-      <DependentUpon>TrackingControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\SettingsControl.xaml.cs">
-      <DependentUpon>SettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Modals\Controls\AddBucketControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Windows\ModalWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\BucketsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\CalendarControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\DashboardControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\MainControlContainer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\ReportsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\TrackingControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\SettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
+    <Compile Update="Modals\Windows\ModalWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+    <Compile Update="Views\Controls\BucketsControl.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    <Compile Update="Views\Controls\CalendarControl.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <Compile Update="Views\Controls\DashboardControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Controls\LiveTrackingControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Controls\MainControlContainer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Controls\ReportsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Controls\SettingsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\Aura.AddOns\Aura.AddOns.csproj">
-      <Project>{43b4706a-3784-46a7-9b00-037831a5c80a}</Project>
-      <Name>Aura.AddOns</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Aura.DataAccess\Aura.DataAccess.csproj">
-      <Project>{365c33c2-1078-4e27-9d20-6353a1dba00e}</Project>
-      <Name>Aura.DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

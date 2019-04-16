@@ -1,11 +1,11 @@
 ﻿using Aura.Processors.Factories.Interfaces;
 using Aura.Processors.GeneralStep;
 using Aura.Processors.GeneralStep.Base;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Processors.Factories
 {
@@ -13,16 +13,16 @@ namespace Aura.Processors.Factories
     {
         private readonly List<IGeneralStep> Steps;
 
-        public GeneralFactory()
+        public GeneralFactory(IKernel kernel)
         {
             // Register steps
             Steps = new List<IGeneralStep>
             {
-                new SetSessionLockedStep(),
-                new SetSessionUnlockedStep(),
-                new SetUserActiveStep(),
-                new SetUserInactiveStep(),
-                new DisposeUser()
+                kernel.Get<SetSessionLockedStep>(),
+                kernel.Get<SetSessionUnlockedStep>(),
+                kernel.Get<SetUserActiveStep>(),
+                kernel.Get<SetUserInactiveStep>(),
+                kernel.Get<DisposeUser>()
             };
         }
 

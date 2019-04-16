@@ -1,30 +1,28 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
 using Aura.Models;
 using Aura.Processors.ProcessingStep.Base;
+using Aura.Services.Interfaces;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Processors.ProcessingStep
 {
     public class IsSessionLockedStep : IProcessingStep
     {
+        private readonly IProcessManager ProcessManager;
         public bool CanProcess => true;
+
+        [Inject]
+        public IsSessionLockedStep(IProcessManager processManager)
+        {
+            ProcessManager = processManager;
+        }
 
         public void Run(Session session, List<IProcessRollup> processRollups)
         {
-            if (session.IsSessionLocked == true)
-            {
-                var runningProcesses = processRollups.SelectMany(w => w.Processes).Where(w => w.IsRunning);
-
-                // end all processes that are running
-                foreach (var process in runningProcesses)
-                {
-                    process.SetNotActive();
-                }
-            }
+            // delete step?
         }
     }
 }

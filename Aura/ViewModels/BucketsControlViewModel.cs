@@ -1,18 +1,12 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
 using Aura.Common;
 using Aura.Common.Extensions;
 using Aura.Modals;
 using Aura.Modals.Interfaces;
-using Aura.Models;
 using Aura.Services.Interfaces;
 using Aura.ViewModels.Base;
 using Ninject;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -29,7 +23,7 @@ namespace Aura.ViewModels
         #region Commands
         public ICommand NewBucketClick => new CommandHandler(() => NewBucketHandler(), true);
         public ICommand DeleteBucketClick => new CommandHandler(() => DeleteBucketHandler(), true);
-        public ICommand SaveBucketClick => new CommandHandler(() => SaveBucketHandler(), true);
+        public ICommand EditBucketClick => new CommandHandler(() => EditBucketHandler(), true);
         #endregion
 
         [Inject]
@@ -57,7 +51,7 @@ namespace Aura.ViewModels
 
         }
 
-        private void SaveBucketHandler()
+        private void EditBucketHandler()
         {
             if (Bucket == null)
             {

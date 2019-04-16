@@ -1,6 +1,6 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
+using Aura.Common.Behavior;
 using Aura.Models;
-using Aura.Processors.Factories;
 using Aura.Processors.Factories.Interfaces;
 using Aura.Processors.GeneralStep;
 using Aura.Processors.ProcessingStep;
@@ -21,6 +21,7 @@ namespace Aura.Processors
         private readonly IProcessingFactory ProcessingFactory;
         private readonly IGeneralFactory GeneralFactory;
         private readonly IAddOnManager AddOnManager;
+        private readonly DebounceDispatcher DebounceDispatcher;
 
         private IKeyboardMouseEvents m_GlobalHook;
         private readonly SessionSwitchEventHandler SessionSwitchEventHandler;
@@ -38,7 +39,7 @@ namespace Aura.Processors
 
             Session = new Session();
             ProcessRollups = new List<IProcessRollup>();
-            
+
             SessionSwitchEventHandler = new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
             SystemEvents.SessionSwitch += SessionSwitchEventHandler;
 
@@ -47,7 +48,9 @@ namespace Aura.Processors
             m_GlobalHook.MouseDownExt += GlobalHookMouseDownExt;
             m_GlobalHook.KeyPress += GlobalHookKeyPress;
             m_GlobalHook.MouseMove += M_GlobalHook_MouseMove;
-        }      
+
+            DebounceDispatcher = new DebounceDispatcher();
+        }
 
         public void Run()
         {
@@ -60,13 +63,14 @@ namespace Aura.Processors
             }
 
             // Process AddOns
-            var addOnSteps = AddOnManager.GetAddOnStepsToProcess();
+            var addOnSteps = AddOnManager.GetAddOnApplicationProcessEvents();
 
             foreach (var addOnStep in addOnSteps)
             {
                 addOnStep.Run(new MainProcessorEventArgs(ProcessRollups));
             }
 
+            // After Processing Done
             OnAfterRun?.Invoke(new MainProcessorEventArgs(ProcessRollups));
         }
 
@@ -79,19 +83,27 @@ namespace Aura.Processors
             SystemEvents.SessionSwitch -= SessionSwitchEventHandler;
         }
 
+        private void SetUserActive()
+        {
+            DebounceDispatcher.Debounce(250, (e) =>
+            {
+                GeneralFactory.Get<SetUserActiveStep>().Run(Session, ProcessRollups);
+            });
+        }
+
         private void M_GlobalHook_MouseMove(object sender, MouseEventArgs e)
         {
-            GeneralFactory.Get<SetUserActiveStep>().Run(Session, ProcessRollups);
+            SetUserActive();
         }
 
         private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
         {
-            GeneralFactory.Get<SetUserActiveStep>().Run(Session, ProcessRollups);
+            SetUserActive();
         }
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
         {
-            GeneralFactory.Get<SetUserActiveStep>().Run(Session, ProcessRollups);
+            SetUserActive();
         }
 
         private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
@@ -102,7 +114,7 @@ namespace Aura.Processors
             }
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
             {
-               GeneralFactory.Get<SetSessionUnlockedStep>().Run(Session, ProcessRollups);
+                GeneralFactory.Get<SetSessionUnlockedStep>().Run(Session, ProcessRollups);
             }
         }
     }

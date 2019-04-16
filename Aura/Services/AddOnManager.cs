@@ -1,49 +1,68 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns.Events;
 using Aura.Data.Interfaces;
 using Aura.Services.Interfaces;
 using Ninject;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Aura.Services
 {
     public class AddOnManager : IAddOnManager
     {
         private readonly IApplicationSettings ApplicationSettings;
-        private readonly IDictionary<IAddOnStep, DateTime> ProcessAddOnSteps;
+        private readonly IDictionary<IApplicationProcessEvent, DateTime> ProcessAddOnSteps;
+        private readonly IEnumerable<IApplicationExitEvent> ApplicationExitEvents;
+        private readonly IEnumerable<IApplicationStartEvent> ApplicationStartEvents;
+
+        private List<INinjectModule> AddOns { get; set; }
 
         [Inject]
         public AddOnManager(IApplicationSettings applicationSettings)
         {
             ApplicationSettings = applicationSettings;
-            ProcessAddOnSteps = GetAddOnSteps().ToDictionary(w => w, x => DateTime.MinValue);
+
+            using (IKernel kernel = new StandardKernel())
+            {
+                AddOns = GetAddOns(kernel);
+                ProcessAddOnSteps = GetAddOns<IApplicationProcessEvent>().ToDictionary(w => w, x => DateTime.MinValue);
+                ApplicationExitEvents = GetAddOns<IApplicationExitEvent>();
+                ApplicationStartEvents = GetAddOns<IApplicationStartEvent>();
+            }
         }
 
-        private IEnumerable<IAddOnStep> GetAddOnSteps()
+        private List<INinjectModule> GetAddOns(IKernel kernel)
         {
             var baseDirectory = Path.Combine(ApplicationSettings.MainFileDirectory, ApplicationSettings.AddOnsFileDirectory);
+            var result = new List<INinjectModule>();
 
             if (Directory.Exists(baseDirectory) == false)
             {
-                return new List<IAddOnStep>();
+                return result;
             }
 
-            var addOnDirectory = $@"{baseDirectory}\*.dll";
-
-            // create new kernel for each directory otherwise we will have collisions when we bind dependencies
-            using (IKernel kernel = new StandardKernel())
+            foreach (var directory in Directory.GetDirectories(baseDirectory).Select(w => $@"{w}\*.dll"))
             {
                 kernel.Settings.ActivationCacheDisabled = true;
-                kernel.Load(addOnDirectory);
-                return kernel.GetModules().Select(w => w.Kernel.Get<IAddOnStep>()).ToList();
+                kernel.Load(directory);
+
+                result.AddRange(kernel.GetModules());
             }
+
+            return result;
         }
 
-        public IEnumerable<IAddOnStep> GetAddOnStepsToProcess()
+        private IEnumerable<T> GetAddOns<T>() where T : class
         {
-            var result = new List<IAddOnStep>();
+            return AddOns.Where(w => ((NinjectModule)w).Bindings.Any(x => x.Service.UnderlyingSystemType == typeof(T))).Select(w => w.Kernel.Get<T>()).ToList();
+        }
+
+        public IEnumerable<IApplicationProcessEvent> GetAddOnApplicationProcessEvents()
+        {
+            var result = new List<IApplicationProcessEvent>();
 
             var processAddOnStepsArray = ProcessAddOnSteps.ToArray();
 
@@ -61,6 +80,16 @@ namespace Aura.Services
             }
 
             return result;
+        }
+
+        public IEnumerable<IApplicationStartEvent> GetAddOnApplicationStartEvents()
+        {
+            return ApplicationStartEvents;
+        }
+
+        public IEnumerable<IApplicationExitEvent> GetAddOnApplicationExitEvents()
+        {
+            return ApplicationExitEvents;
         }
     }
 }

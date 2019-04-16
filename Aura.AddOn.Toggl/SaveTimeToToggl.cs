@@ -1,14 +1,10 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
+using Aura.AddOns.Events;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.AddOn.Toggl
 {
-    public class SaveTimeToToggl : IAddOnStep
+    public class SaveTimeToToggl : IApplicationProcessEvent
     {
         public TimeSpan RunInterval => new TimeSpan(0, 0, 1, 0, 0);
 

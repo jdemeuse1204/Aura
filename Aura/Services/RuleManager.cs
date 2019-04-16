@@ -1,13 +1,11 @@
-﻿using Aura.Data.Interfaces;
-using Aura.Rules.Interfaces;
-using Aura.Rules.When;
+﻿using Aura.Common.Helpers;
+using Aura.Data.Interfaces;
 using Aura.Services.Interfaces;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Services
 {
@@ -21,6 +19,16 @@ namespace Aura.Services
         {
             RuleRepository = ruleRepository;
             RulesFactory = rulesFactory;
+        }
+
+        public IEnumerable<string> GetWhenProperties()
+        {
+            return RuleRepository.GetWhenProperties();
+        }
+
+        public IEnumerable<string> GetWhenRuleNames()
+        {
+            return RuleRepository.GetWhenRuleNames().Select(w => StringHelpers.SeparateStringOnCasing(w));
         }
     }
 }

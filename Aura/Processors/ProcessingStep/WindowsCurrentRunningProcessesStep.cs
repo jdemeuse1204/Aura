@@ -1,14 +1,11 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
 using Aura.Models;
 using Aura.Processors.ProcessingStep.Base;
-using Aura.Services;
 using Aura.Services.Interfaces;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Processors.ProcessingStep
 {
@@ -25,6 +22,12 @@ namespace Aura.Processors.ProcessingStep
 
         public void Run(Session session, List<IProcessRollup> processRollups)
         {
+            // Do nothing is user is away or inactive
+            if (session.IsUserInactive || session.IsSessionLocked)
+            {
+                return;
+            }
+
             var loggedProcesses = processRollups.SelectMany(w => w.Processes);
             var runningProcesses = ProcessManager.GetCurrentProcesses();
 

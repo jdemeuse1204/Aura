@@ -1,7 +1,8 @@
 ﻿using Aura.Rules.Interfaces;
 using Aura.Rules.When.Base;
 using System;
-using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Aura.Rules.When
 {
@@ -13,12 +14,12 @@ namespace Aura.Rules.When
 
         public bool IsTrue<K>(T instance, string propertyName, K compareValue)
         {
-            return When(instance, propertyName, (K propertyValue) => 
+            return When(instance, propertyName, (K propertyValue) =>
             {
-                return propertyValue != null && 
-                    propertyValue is string propertyValueString && 
-                    compareValue != null && 
-                    compareValue is string compareValueString && 
+                return propertyValue != null &&
+                    propertyValue is string propertyValueString &&
+                    compareValue != null &&
+                    compareValue is string compareValueString &&
                     propertyValueString.Contains(compareValueString);
             });
         }

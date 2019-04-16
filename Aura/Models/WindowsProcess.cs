@@ -1,11 +1,9 @@
 ﻿using Aura.AddOns;
-using Aura.AddOns.Step;
+using Aura.Models.Attributes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Models
 {
@@ -30,13 +28,24 @@ namespace Aura.Models
         public IEnumerable<int> Ids { get; set; }
         public string Key { get; set; }
         public DateTime StartTime { get; set; }
+
+        [RuleFilterable]
         public string ProcessName { get; set; }
+
+        [RuleFilterable]
         public string Title { get; set; }
+
+        [RuleFilterable]
         public bool IsActive { get; set; }
+
+        [RuleFilterable]
         public bool IsRunning { get; set; }
+
         public IntPtr Handle { get; set; }
         public IBucket Bucket { get; set; }
         public IEnumerable<IClockPeriod> ClockPeriods { get; set; }
+
+        [RuleFilterable]
         public string Name
         {
             get
@@ -44,6 +53,8 @@ namespace Aura.Models
                 return $"{ProcessName ?? string.Empty} - {Title ?? string.Empty}";
             }
         }
+
+        [RuleFilterable]
         public TimeSpan TotalTimeActive
         {
             get

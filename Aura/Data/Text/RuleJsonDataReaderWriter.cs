@@ -1,6 +1,9 @@
 ﻿using Aura.Data.Interfaces;
 using Aura.DataAccess.Json;
 using Ninject;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Aura.Data.Text
 {

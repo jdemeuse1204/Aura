@@ -1,7 +1,7 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
+using Aura.Common;
 using Aura.Common.Extensions;
 using Aura.Common.Helpers;
-using Aura.Data;
 using Aura.Data.Interfaces;
 using Aura.Models;
 using Aura.Services.Interfaces;
@@ -11,8 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Services
 {
@@ -89,6 +87,59 @@ namespace Aura.Services
             var sum = TimeSpanHelpers.Sum(process.ClockPeriods.Select(w => w.EndTime.HasValue ? (w.EndTime.Value - w.StartTime) : (DateTime.Now - w.StartTime)));
 
             return sum.ToReadableTime();
+        }
+
+        public void SetAllProcessesInactive(List<IProcessRollup> processRollups)
+        {
+            // end all processes that are running
+            foreach (var process in processRollups.SelectMany(w => w.Processes).Where(w => w.IsRunning))
+            {
+                process.SetNotActive();
+            }
+        }
+
+        public void AddSessionLockedRollup(List<IProcessRollup> processRollups)
+        {
+            StartUserInactivity(processRollups, Constants.UserDeviceLocked, Constants.InactiveProcessName);
+        }
+
+        public void AddUserAwayRollup(List<IProcessRollup> processRollups)
+        {
+            StartUserInactivity(processRollups, Constants.UserInactive, Constants.InactiveProcessName);
+        }
+
+        private void StartUserInactivity(List<IProcessRollup> processRollups, string title, string inactivityName)
+        {
+            var processRollup = GetOrCreateInactiveProcessRollup(processRollups);
+            var windowsProcess = GetOrCreateWindowsProcess(inactivityName, title, processRollup);
+
+            windowsProcess.SetActive();
+        }
+
+        private IWindowsProcess GetOrCreateWindowsProcess(string processName, string title, IProcessRollup processRollup)
+        {
+            var result = processRollup.Processes.FirstOrDefault(w => w.Title == title);
+
+            if (result == null)
+            {
+                result = new WindowsProcess(title, processName, 0);
+                processRollup.Add(result);
+            }
+
+            return result;
+        }
+
+        private IProcessRollup GetOrCreateInactiveProcessRollup(List<IProcessRollup> processRollups)
+        {
+            IProcessRollup processRollup = processRollups.FirstOrDefault(w => w.ProcessName == Constants.InactiveProcessName);
+
+            if (processRollup == null)
+            {
+                processRollup = new ProcessRollup(Constants.InactiveProcessName);
+                processRollups.Add(processRollup);
+            }
+
+            return processRollup;
         }
     }
 }

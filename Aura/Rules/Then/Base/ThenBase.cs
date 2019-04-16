@@ -1,15 +1,13 @@
 ﻿using Aura.Rules.Base;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Rules.Then.Base
 {
     public abstract class ThenBase : RuleBase
     {
-        public ThenBase(string ruleName) 
+        public ThenBase(string ruleName)
             : base(ruleName)
         {
         }

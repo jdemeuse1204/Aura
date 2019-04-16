@@ -3,9 +3,7 @@ using Aura.Modals.Windows;
 using Aura.ViewModels.Modal;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aura.Modals
 {

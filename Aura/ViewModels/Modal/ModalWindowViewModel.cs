@@ -3,16 +3,14 @@ using Aura.Modals;
 using Aura.ViewModels.Base;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Aura.ViewModels.Modal
 {
     public class ModalWindowViewModel : ViewModel
     {
-        public string Title { get; set; }  
+        public string Title { get; set; }
 
         public Visibility IsAddBucketControlVisible { get; set; }
 

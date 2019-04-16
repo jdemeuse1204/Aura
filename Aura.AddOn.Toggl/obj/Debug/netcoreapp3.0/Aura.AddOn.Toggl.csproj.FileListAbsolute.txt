@@ -1,0 +1,12 @@
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\netcoreapp3.0\Aura.AddOn.Toggl.deps.json
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\netcoreapp3.0\Aura.AddOn.Toggl.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.csprojAssemblyReference.cache
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.csproj.CoreCompileInputs.cache
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.AssemblyInfoInputs.cache
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.AssemblyInfo.cs
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\netcoreapp3.0\Aura.AddOn.Toggl.pdb
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\netcoreapp3.0\Aura.AddOns.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\bin\Debug\netcoreapp3.0\Aura.AddOns.pdb
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.csproj.CopyComplete
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.dll
+C:\Repos\Aura\Aura.AddOn.Toggl\obj\Debug\netcoreapp3.0\Aura.AddOn.Toggl.pdb

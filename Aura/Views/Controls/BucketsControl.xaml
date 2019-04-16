@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Grid>
         <Label Content="Buckets" Foreground="RoyalBlue" HorizontalAlignment="Left" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Padding="0" Width="798"/>
-        <ListView ItemsSource="{Binding Buckets}" SelectedItem="{Binding Bucket}" HorizontalAlignment="Left" Height="364" Margin="10,53,0,0" VerticalAlignment="Top" Width="313">
+        <ListView ItemsSource="{Binding Buckets}" SelectedItem="{Binding Bucket}" Height="329" Margin="10,88,15,0" VerticalAlignment="Top">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -25,10 +25,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Style="{StaticResource PrimaryButton}" Content="New" Command="{Binding NewBucketClick}" HorizontalAlignment="Left" Margin="552,422,0,0" VerticalAlignment="Top" Width="67" Height="26"/>
+        <Button Style="{StaticResource PrimaryButton}" Content="New" Command="{Binding NewBucketClick}" HorizontalAlignment="Left" Margin="716,57,0,0" VerticalAlignment="Top" Width="67" Height="26"/>
         <Button Style="{StaticResource DangerButton}" Content="Delete" HorizontalAlignment="Left" Margin="10,422,0,0" VerticalAlignment="Top" Width="58" Height="26"/>
-        <Label Content="Name:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="323,53,0,0" VerticalAlignment="Top" Width="89"/>
-        <TextBox Height="26" Margin="412,53,15,0" TextWrapping="Wrap" Text="{Binding Bucket.Name, Mode=TwoWay}" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource SuccessButton}" Content="Save" Command="{Binding SaveBucketClick}" Margin="714,422,15,0" VerticalAlignment="Top" Height="26"/>
+        <Button Style="{StaticResource SecondaryButton}" Content="Edit" HorizontalAlignment="Left" Margin="725,422,0,0" VerticalAlignment="Top" Width="58" Height="26"/>
     </Grid>
 </UserControl>

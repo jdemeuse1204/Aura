@@ -1,0 +1,17 @@
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\bin\Debug\netcoreapp3.0\Aura.AddOns.deps.json
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\bin\Debug\netcoreapp3.0\Aura.AddOns.dll
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\bin\Debug\netcoreapp3.0\Aura.AddOns.pdb
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.csprojAssemblyReference.cache
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.csproj.CoreCompileInputs.cache
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.AssemblyInfoInputs.cache
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.AssemblyInfo.cs
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.dll
+C:\Users\JamesDeMuse\source\repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.pdb
+C:\Repos\Aura\Aura.AddOns\bin\Debug\netcoreapp3.0\Aura.AddOns.deps.json
+C:\Repos\Aura\Aura.AddOns\bin\Debug\netcoreapp3.0\Aura.AddOns.dll
+C:\Repos\Aura\Aura.AddOns\bin\Debug\netcoreapp3.0\Aura.AddOns.pdb
+C:\Repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.csproj.CoreCompileInputs.cache
+C:\Repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.AssemblyInfoInputs.cache
+C:\Repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.AssemblyInfo.cs
+C:\Repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.dll
+C:\Repos\Aura\Aura.AddOns\obj\Debug\netcoreapp3.0\Aura.AddOns.pdb

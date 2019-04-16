@@ -8,32 +8,38 @@
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="900"
              DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainControlContainer}">
+    <UserControl.Resources>
+        <ValueConverters:IsVisibileColorValueConverter x:Key="IsVisibileColorValueConverter" />
+    </UserControl.Resources>
     <Grid>
-        <Canvas Visibility="{Binding IsDashboardControlVisible}" Margin="80,40,25,10">
-            <Controls:DashboardControl Height="460" Width="785" />
-        </Canvas>
+        <Grid Width="120" HorizontalAlignment="Left" Background="RoyalBlue">
+            <Button Style="{StaticResource NavButton}" Background="{Binding IsSettingsControlVisible, Converter={StaticResource IsVisibileColorValueConverter}, ConverterParameter='#708ee9:RoyalBlue'}" Content="Settings" Command="{Binding GoToSettingsClick}" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button Style="{StaticResource NavButton}" Background="{Binding IsLiveTrackingControlVisible, Converter={StaticResource IsVisibileColorValueConverter}, ConverterParameter='#708ee9:RoyalBlue'}" Content="Live Tracking" Command="{Binding GoToLiveTrackingClick}" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button Style="{StaticResource NavButton}" Background="{Binding IsBucketsControlVisible, Converter={StaticResource IsVisibileColorValueConverter}, ConverterParameter='#708ee9:RoyalBlue'}" Content="Buckets" Command="{Binding GoToBucketsClick}" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button Style="{StaticResource NavButton}" Background="{Binding IsCalendarControlVisible, Converter={StaticResource IsVisibileColorValueConverter}, ConverterParameter='#708ee9:RoyalBlue'}" Content="Calendar" Command="{Binding GoToCalendarClick}" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button Style="{StaticResource NavButton}" Background="{Binding IsDashboardControlVisible, Converter={StaticResource IsVisibileColorValueConverter}, ConverterParameter='#708ee9:RoyalBlue'}" Content="Dashboard" Command="{Binding GoToDashboardClick}" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button Style="{StaticResource NavButton}" Background="{Binding IsReportsControlVisible, Converter={StaticResource IsVisibileColorValueConverter}, ConverterParameter='#708ee9:RoyalBlue'}" Content="Reports" Command="{Binding GoToReportsClick}" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="100"/>
+        </Grid>
+        <Grid Margin="120,0,25,10">
+            <Grid Visibility="{Binding IsDashboardControlVisible}">
+                <Controls:DashboardControl/>
+            </Grid>
 
-        <Canvas Visibility="{Binding IsSettingsControlVisible}" Margin="80,40,25,10">
-            <Controls:SettingsControl Height="460" Width="785" />
-        </Canvas>
+            <Grid Visibility="{Binding IsSettingsControlVisible}">
+                <Controls:SettingsControl/>
+            </Grid>
 
-        <Canvas Visibility="{Binding IsTrackingControlVisible}" Margin="80,40,25,10">
-            <Controls:TrackingControl Height="460" Width="785" />
-        </Canvas>
+            <Grid Visibility="{Binding IsLiveTrackingControlVisible}">
+                <Controls:LiveTrackingControl/>
+            </Grid>
 
-        <Canvas Visibility="{Binding IsCalendarControlVisible}" Margin="80,40,25,10">
-            <Controls:CalendarControl Height="460" Width="785" />
-        </Canvas>
+            <Grid Visibility="{Binding IsCalendarControlVisible}">
+                <Controls:CalendarControl/>
+            </Grid>
 
-        <Canvas Visibility="{Binding IsBucketsControlVisible}" Margin="80,40,25,10">
-            <Controls:BucketsControl Height="460" Width="785" />
-        </Canvas>
-
-        <Button Style="{StaticResource PrimaryButton}" Content="Settings" Command="{Binding GoToSettingsClick}" HorizontalAlignment="Left" Margin="0,180,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Style="{StaticResource PrimaryButton}" Content="Tracking" Command="{Binding GoToTrackingClick}" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Style="{StaticResource PrimaryButton}" Content="Buckets" Command="{Binding GoToBucketsClick}" HorizontalAlignment="Left" Margin="0,152,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Style="{StaticResource PrimaryButton}" Content="Calendar" Command="{Binding GoToCalendarClick}" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Style="{StaticResource PrimaryButton}" Content="Dashboard" Command="{Binding GoToDashboardClick}" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Style="{StaticResource PrimaryButton}" Content="Reports" Command="{Binding GoToReportsClick}" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top" Width="80"/>
+            <Grid Visibility="{Binding IsBucketsControlVisible}">
+                <Controls:BucketsControl/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

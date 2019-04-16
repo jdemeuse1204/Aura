@@ -1,11 +1,10 @@
-﻿using Aura.AddOns.Step;
+﻿using Aura.AddOns;
 using Aura.Common.Extensions;
 using Aura.Processors;
 using Aura.Services.Interfaces;
 using Aura.ViewModels.Base;
 using Ninject;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Aura.ViewModels
 {

@@ -1,7 +1,9 @@
 ﻿using Aura.DataAccess.Http.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 
 namespace Aura.DataAccess.Http
 {

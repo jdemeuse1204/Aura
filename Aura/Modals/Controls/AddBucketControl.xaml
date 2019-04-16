@@ -60,26 +60,36 @@
             </Style.Triggers>
         </Style>
         <DataTemplate x:Key="RuleItem">
-            <StackPanel Height="86" Width="700">
+            <StackPanel Height="110" Width="700">
                 <StackPanel Visibility="{Binding RuleItemType, Converter={StaticResource WhenRuleItemTypeVisibilityValueConverter}}">
-                    <Border BorderBrush="RoyalBlue" BorderThickness="3" Margin="0, 5, 0 5" CornerRadius="20,20,20,20">
+                    <Border BorderBrush="RoyalBlue" BorderThickness="3" Margin="0, 5, 0 5" CornerRadius="40,40,40,40">
                         <WrapPanel>
-                            <Label Content="When" HorizontalContentAlignment="Center" Width="62" Margin="50, 0, 0, 0" FontSize="20" Background="RoyalBlue" Foreground="White"/>
-                            <Canvas Width="580" Height="38">
-                                <Button Style="{StaticResource SuccessButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasNoRuleVisibilityValueConverter}}" Content="Design +" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Left="10" Canvas.Top="5"/>
-                                <Button Style="{StaticResource DangerButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasRuleVisibilityValueConverter}}" Content="Delete" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Right="10" Canvas.Top="5"/>
+                            <Label Content="When" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="62" Margin="50, 0, 0, 0" FontSize="20" Background="RoyalBlue" Foreground="White"/>
+                            <Canvas Width="580" Height="60">
+                                <Label Content="Rule:" VerticalAlignment="Top" Canvas.Left="10" HorizontalAlignment="Left"/>
+                                <ComboBox SelectedValue="{Binding RuleName}"  ItemsSource="{Binding DataContext.WhenRuleNames, RelativeSource={RelativeSource AncestorType=local:AddBucketControl}}" VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Top="26" Canvas.Left="10" MinWidth="200" Height="26"/>
+
+                                <Label Content="Property:" VerticalAlignment="Top" Canvas.Left="215" HorizontalAlignment="Left"/>
+                                <ComboBox SelectedValue="{Binding PropertyName}" ItemsSource="{Binding DataContext.WhenPropertyNames, RelativeSource={RelativeSource AncestorType=local:AddBucketControl}}" VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Top="26" Canvas.Left="215" MinWidth="130" Height="26" Width="117"/>
+
+                                <Label Content="Value:" VerticalAlignment="Top" Canvas.Left="350" HorizontalAlignment="Left"/>
+                                <TextBox Style="{StaticResource TextBox}" VerticalAlignment="Top" Text="{Binding Value}" HorizontalAlignment="Left" Canvas.Top="26" Canvas.Left="350" MinWidth="150" Height="26" Width="160"/>
+                                <Button Style="{StaticResource DangerButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasRuleVisibilityValueConverter}}" Content="Delete" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Right="25" Canvas.Top="15" Canvas.Left="515"/>
                             </Canvas>
                         </WrapPanel>
                     </Border>
-                    <Button Style="{StaticResource CircleAddButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasRuleVisibilityValueConverter}}" Content="+" HorizontalAlignment="Left" Margin="20, 0, 0, 0"/>
+                    <Button Style="{StaticResource CircleAddButton}" Visibility="{Binding Rule, Mode=OneWay, Converter={StaticResource BucketRuleHasRuleVisibilityValueConverter}}" Content="+" HorizontalAlignment="Center" Margin="0, 0, 0, 0"/>
                 </StackPanel>
                 <StackPanel Visibility="{Binding RuleItemType, Converter={StaticResource ThenRuleItemTypeVisibilityValueConverter}}">
-                    <Border BorderBrush="ForestGreen" BorderThickness="3" Margin="0, 5, 0 5" CornerRadius="20,20,20,20">
+                    <Border BorderBrush="ForestGreen" BorderThickness="3" Margin="0, 5, 0 5" CornerRadius="40,40,40,40">
                         <WrapPanel>
-                            <Label Content="Then" HorizontalContentAlignment="Center" Width="62" Margin="50, 0, 0, 0" FontSize="20" Background="ForestGreen" Foreground="White"/>
-                            <Canvas Width="580" Height="38">
-                                <Label Content="{Binding Title}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Canvas.Left="16" Canvas.Top="5"/>
-                                <Button Style="{StaticResource DangerButton}" Content="Delete" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Right="10" Canvas.Top="5"/>
+                            <Label Content="Then" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="62" Margin="50, 0, 0, 0" FontSize="20" Background="ForestGreen" Foreground="White"/>
+                            <Canvas Width="580" Height="60">
+
+                                <Label Content="Action:" VerticalAlignment="Top" Canvas.Left="10" HorizontalAlignment="Left"/>
+                                <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Top="26" Canvas.Left="10" MinWidth="150" Height="26"/>
+
+                                <Button Style="{StaticResource DangerButton}" Content="Delete" VerticalAlignment="Center" HorizontalAlignment="Right" Canvas.Right="25" Canvas.Top="15"/>
                             </Canvas>
                         </WrapPanel>
                     </Border>
@@ -94,6 +104,7 @@
         <Label Content="Rule Creator" HorizontalAlignment="Left" Margin="0,90,0,0" FontSize="26" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="800"/>
         <ListBox ItemsSource="{Binding Item.Rules}" ItemTemplate="{StaticResource RuleItem}" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="305" Margin="10,135,0,0" VerticalAlignment="Top" Width="780" />
         <Label Content="Bucket Information" HorizontalAlignment="Left" Margin="0,-2,0,0" FontSize="26" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="800"/>
-        
+        <Button Style="{StaticResource SuccessButton}" Command="{Binding SaveClick}" Content="Save" HorizontalAlignment="Left" Margin="700,415,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Style="{StaticResource DangerButton}" Content="Cancel" HorizontalAlignment="Left" Margin="010,415,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

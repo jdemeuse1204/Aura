@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Aura.DataAccess.Json
 {
@@ -25,14 +26,14 @@ namespace Aura.DataAccess.Json
         {
             if (File.Exists(FileNameAndPath) == false)
             {
-                return default(T);
+                return default;
             }
 
             var text = File.ReadAllText(FileNameAndPath);
 
             if (string.IsNullOrEmpty(text))
             {
-                return default(T);
+                return default;
             }
 
             return JsonConvert.DeserializeObject<T>(text);
